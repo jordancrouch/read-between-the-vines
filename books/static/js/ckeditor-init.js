@@ -130,7 +130,6 @@ const editorConfig = {
       },
     ],
   },
-  initialData: "<p>Content goes here...</p>",
   licenseKey: LICENSE_KEY,
   link: {
     addTargetToExternalLinks: true,
