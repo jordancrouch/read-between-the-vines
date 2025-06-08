@@ -1,3 +1,54 @@
+from django.contrib.auth.models import User
 from django.db import models
 
+
 # Create your models here.
+# Books model.
+class Books(models.Model):
+    class Meta:
+        verbose_name = "Book"
+        verbose_name_plural = "Books"
+        ordering = ["-created_on"]
+
+    class Status(models.IntegerChoices):
+        DRAFT = 0, "Draft"
+        PUBLISHED = 1, "Published"
+
+    class ReadingStatus(models.TextChoices):
+        TO_BE_READ = "TBR", "To Be Read"
+        CURRENTLY_READING = "CR", "Currently Reading"
+        FINISHED_READING = "FR", "Finished Reading"
+
+    def __str__(self):
+        return f"{self.title} | Category: {self.get_category_display()} | Status: {self.get_status_display()}"  # type: ignore[attr-defined]
+
+    title: models.CharField = models.CharField(max_length=100, unique=True)
+    slug: models.SlugField = models.SlugField(max_length=100, unique=True)
+    excerpt: models.TextField = models.TextField(null=True, blank=True)
+    content: models.TextField = models.TextField()
+    created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
+    updated_on: models.DateTimeField = models.DateTimeField(auto_now=True)
+    status: models.IntegerField = models.IntegerField(
+        choices=Status.choices, default=Status.DRAFT  # type: ignore[arg-type]
+    )
+    category: models.CharField = models.CharField(
+        max_length=3,
+        choices=ReadingStatus.choices,  # type: ignore[arg-type]
+        default=ReadingStatus.TO_BE_READ,
+    )
+
+
+# Comment model
+class Comment(models.Model):
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        status = "Approved" if self.approved else "Awaiting approval"
+        return f"Comment: {self.body} by {self.author} | Status: {status}"
+
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name="comments")  # type: ignore[arg-type]
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")  # type: ignore[arg-type]
+    body: models.TextField = models.TextField()
+    approved: models.BooleanField = models.BooleanField(default=False)  # type: ignore[arg-type]
+    created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
