@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books | Read Between the Vines</title>
+  </head>
+  <body>
+    <h1>Books list</h1>
+    {% for book in object_list %}
+    <p>{{book.get_category_display}}</p>
+    <h2>{{book.title}}</h2>
+    <p>{{book.excerpt}}</p>
+    {% endfor %}
+  </body>
+</html>

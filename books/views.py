@@ -1,7 +1,10 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
+
+from .models import Books
 
 
 # Create your views here.
-def my_books(request):
-    return HttpResponse("Hello, books!")
+class BooksList(generic.ListView):
+    queryset = Books.objects.all()
+    template_name = "books_list.html"
