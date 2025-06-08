@@ -1,0 +1,6 @@
+:root {
+  --charcoal: #18171d;
+  --white: #dfdfdf;
+  --bs-body-bg: var(--charcoal);
+  --bs-body-color: var(--white);
+}
