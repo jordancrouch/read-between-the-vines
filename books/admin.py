@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Books
+from .models import Books, Comment
 
 
 # Register your models here.
@@ -31,3 +31,4 @@ class BooksAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Books, BooksAdmin)
+admin.site.register(Comment)

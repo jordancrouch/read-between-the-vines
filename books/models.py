@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -30,3 +31,11 @@ class Books(models.Model):
         choices=ReadingStatus.choices,
         default=ReadingStatus.TO_BE_READ,
     )
+
+
+class Comment(models.Model):
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    body: models.TextField = models.TextField()
+    approved: models.BooleanField = models.BooleanField(default=False)
+    created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
