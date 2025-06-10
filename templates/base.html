@@ -21,9 +21,12 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Read Between the Vines</a>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-xxl">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'images/rbtv-logo.svg' %}"
+               alt="Read Between the Vines logo">
+        </a>
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -53,29 +56,6 @@
     </nav>
     <!-- Main -->
     <main>
-      <section id="home-hero" class="hero" aria-label="Hero Section">
-        <div class="hero-container">
-          <div class="hero-video">
-            <video autoplay
-                   muted
-                   playsinline
-                   loop
-                   preload="none"
-                   poster="{% static 'images/home-hero-video-poster.webp' %}"
-                   width="1280"
-                   height="720">
-              <source src="{% static 'videos/home-hero-video-720p.mp4' %}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div class="hero-content">
-            <h1>Ink-stained hands. Candlelit pages. Timeless stories.</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
-            <button type="button" class="btn btn-primary">View all books</button>
-            <button type="button" class="btn btn-secondary">Sign up now</button>
-          </div>
-        </div>
-      </section>
       {% block content %}
       {% endblock content %}
     </main>
