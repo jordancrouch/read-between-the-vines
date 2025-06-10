@@ -1,5 +1,5 @@
 .venv/
 env.py
-__pycache__
+__pycache__/
 .github/
 books/fixtures/
