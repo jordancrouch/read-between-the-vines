@@ -1,21 +1,109 @@
 :root {
+  /* Colour variables */
   --charcoal: #18171d;
   --white: #dfdfdf;
-  --border-radius: 20px;
+  --green: #4b5936;
+  --brown: #732f18;
+  --dark-brown: #41261d;
+  --beige: #f2c48d;
+
+  /* Override Bootstrap variables */
   --bs-body-bg: var(--charcoal);
   --bs-body-color: var(--white);
+
+  /* Typography variables and root size */
+  --heading-font: "Grenze Gotisch", serif;
+  --body-font: Lato, sans-serif;
+  --body-font-size: 20px;
+  --body-font-line-height: 30px;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-bold: 600;
+  font-size: var(--body-font-size);
+  line-height: var(--body-font-line-height);
+
+  /* Other variables */
+  --border-radius: 20px;
+  --button-border-radius: 30px;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--heading-font);
+  font-weight: var(--font-light);
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 2.6rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+h6 {
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+  line-height: 1rem;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--body-font);
+  font-size: var(--body-font-size);
+  line-height: var(--body-font-line-height);
+  font-weight: var(--bold);
+  --bs-border-radius: var(--button-border-radius);
+  --bs-btn-padding-x: 1.2rem;
+  --bs-btn-padding-y: 0.7rem;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--charcoal);
+  --bs-btn-bg: var(--beige);
+  --bs-btn-border-color: var(--beige);
+}
+
+.btn-secondary {
+  --bs-btn-color: var(--white);
+  --bs-btn-bg: var(--green);
+  --bs-btn-border-color: var(--green);
+}
+
+/* Navbar */
+.navbar-brand {
+  flex: 0 1 180px;
+}
+
+.navbar-brand img {
+  width: 100%;
+  display: block;
 }
 
 /* Hero */
 .hero {
+  position: relative;
 }
 
 .hero .hero-container {
   position: relative;
-  border-radius: var(--border-radius);
 }
 
-.hero .hero-container .hero-video {
+.hero .hero-container .hero-video-outer {
   position: absolute;
   top: 0;
   right: 0;
@@ -23,10 +111,113 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--border-radius);
   z-index: 0;
 }
 
-.hero .hero-container .hero-content {
+.hero .hero-container .hero-video-outer .hero-video {
+  flex: 1 0 400%;
   position: relative;
+}
+
+.hero .hero-container .hero-video-outer .hero-video::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--charcoal);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+.hero .hero-container .hero-video-outer .hero-video .media-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 ratio */
+  z-index: 0;
+}
+
+.hero .hero-container .hero-video-outer .hero-video video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero .hero-container .hero-content-container {
+  position: relative;
+  min-height: 680px;
   z-index: 1;
+}
+
+.hero .hero-container .hero-content-container .hero-content {
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  /* Hero */
+  .hero .hero-container .hero-video-outer .hero-video {
+    flex-basis: 220%;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* Typography */
+  h1 {
+    font-size: 3rem;
+    line-height: 3.1rem;
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    flex-basis: 200px;
+  }
+
+  /* Hero */
+  .hero .hero-container .hero-video-outer .hero-video {
+    flex-basis: 160%;
+  }
+
+  .hero .hero-container .hero-content-container {
+    min-height: 720px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* Typography */
+  h1 {
+    font-size: 4rem;
+    line-height: 4.1rem;
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    flex-basis: 244px;
+  }
+  /* Hero */
+  .hero .hero-container .hero-video-outer .hero-video {
+    flex-basis: 125%;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
 }
