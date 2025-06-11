@@ -27,6 +27,12 @@
   --button-border-radius: 30px;
 }
 
+/* Custom background colours */
+.bg-beige {
+  background-color: var(--beige);
+  color: var(--charcoal);
+}
+
 /* Typography */
 h1,
 h2,
@@ -76,12 +82,18 @@ h6 {
   --bs-btn-color: var(--charcoal);
   --bs-btn-bg: var(--beige);
   --bs-btn-border-color: var(--beige);
+  --bs-btn-hover-color: var(--charcoal);
+  --bs-btn-hover-bg: var(--white);
+  --bs-btn-hover-border-color: var(--white);
 }
 
 .btn-secondary {
   --bs-btn-color: var(--white);
   --bs-btn-bg: var(--green);
   --bs-btn-border-color: var(--green);
+  --bs-btn-hover-color: var(--charcoal);
+  --bs-btn-hover-bg: var(--white);
+  --bs-btn-hover-border-color: var(--white);
 }
 
 /* Navbar */
@@ -169,7 +181,7 @@ h6 {
 @media (min-width: 576px) {
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 220%;
+    flex-basis: 230%;
   }
 }
 
@@ -188,7 +200,7 @@ h6 {
 
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 160%;
+    flex-basis: 175%;
   }
 
   .hero .hero-container .hero-content-container {
@@ -210,12 +222,16 @@ h6 {
   }
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 125%;
+    flex-basis: 140%;
   }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  /* Hero */
+  .hero .hero-container .hero-video-outer .hero-video {
+    flex-basis: 125%;
+  }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
