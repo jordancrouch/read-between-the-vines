@@ -20,7 +20,7 @@ class Books(models.Model):
         FINISHED_READING = "FR", "Finished Reading"
 
     def __str__(self):
-        return f"{self.title} | Category: {self.get_category_display()} | Status: {self.get_status_display()}"  # type: ignore[attr-defined]
+        return f"{self.title} | Category: {self.get_category_display()} | Status: {self.get_status_display()}"
 
     title: models.CharField = models.CharField(max_length=100, unique=True)
     slug: models.SlugField = models.SlugField(max_length=100, unique=True)
@@ -29,11 +29,11 @@ class Books(models.Model):
     created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
     updated_on: models.DateTimeField = models.DateTimeField(auto_now=True)
     status: models.IntegerField = models.IntegerField(
-        choices=Status.choices, default=Status.DRAFT  # type: ignore[arg-type]
+        choices=Status.choices, default=Status.DRAFT
     )
     category: models.CharField = models.CharField(
         max_length=3,
-        choices=ReadingStatus.choices,  # type: ignore[arg-type]
+        choices=ReadingStatus.choices,
         default=ReadingStatus.TO_BE_READ,
     )
 
@@ -47,8 +47,8 @@ class Comment(models.Model):
         status = "Approved" if self.approved else "Awaiting approval"
         return f"Comment: {self.body} by {self.author} | Status: {status}"
 
-    book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name="comments")  # type: ignore[arg-type]
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")  # type: ignore[arg-type]
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
     body: models.TextField = models.TextField()
-    approved: models.BooleanField = models.BooleanField(default=False)  # type: ignore[arg-type]
+    approved: models.BooleanField = models.BooleanField(default=False)
     created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)

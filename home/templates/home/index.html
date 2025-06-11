@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
   <!-- Home content -->
+  <!-- Home hero -->
   <section id="home-hero" class="hero mx-3" aria-label="Hero Section">
     <div class="container-xxl hero-container">
       <div class="hero-video-container">
@@ -37,5 +38,39 @@
       </div>
     </div>
   </section>
+  <!-- End home hero -->
+  <!-- Currently reading books sections -->
+  {% for book in currently_reading_books %}
+    <section>
+      <div class="container-xxl">
+        <h2>Currently reading: {{ book.title }}</h2>
+      </div>
+    </section>
+  {% empty %}
+    <section>
+      <div class="container-xxl">
+        <h2>Sorry...</h2>
+        <p>There is currently no book being read by the club. Please check back later!</p>
+      </div>
+    </section>
+  {% endfor %}
+  <!-- End currently reading books sections -->
+  <!-- To be read books section -->
+  <section class="bg-beige">
+    <div class="container-xxl">
+      <h2>To be read/reading list title</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+      <button type="button" class="btn btn-secondary">View all books</button>
+      {% for book in to_be_read_books %}
+        <div class="col">
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.excerpt }}</p>
+          <a href="">Read more</a>
+        </div>
+      {% empty %}
+      {% endfor %}
+    </div>
+  </section>
+  <!-- End to be read books section -->
   <!-- End home content -->
 {% endblock %}
