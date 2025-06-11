@@ -41,36 +41,48 @@
   <!-- End home hero -->
   <!-- Currently reading books sections -->
   {% for book in currently_reading_books %}
-    <section>
-      <div class="container-xxl">
-        <h2>Currently reading: {{ book.title }}</h2>
-      </div>
-    </section>
-  {% empty %}
-    <section>
-      <div class="container-xxl">
-        <h2>Sorry...</h2>
-        <p>There is currently no book being read by the club. Please check back later!</p>
-      </div>
-    </section>
-  {% endfor %}
-  <!-- End currently reading books sections -->
-  <!-- To be read books section -->
-  <section class="bg-beige">
-    <div class="container-xxl">
-      <h2>To be read/reading list title</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
-      <button type="button" class="btn btn-secondary">View all books</button>
-      {% for book in to_be_read_books %}
-        <div class="col">
-          <h3>{{ book.title }}</h3>
-          <p>{{ book.excerpt }}</p>
-          <a href="">Read more</a>
+    <section class="px-3 py-5">
+      <div class="container px-0">
+        {% if forloop.counter0|divisibleby:"2" %}
+          <div class="row g-4">
+          {% else %}
+            <div class="row flex-lg-row-reverse g-4">
+            {% endif %}
+            <div class="col-12 col-lg-6 d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-start pe-lg-4">
+              <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
+              <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+            </div>
+            <div class="col-12 col-lg-6 ps-lg-4"></div>
+          </div>
         </div>
-      {% empty %}
-      {% endfor %}
-    </div>
-  </section>
-  <!-- End to be read books section -->
-  <!-- End home content -->
-{% endblock %}
+      </section>
+    {% empty %}
+      <section class="px-3 py-5">
+        <div class="container px-0">
+          <h2 class="text-center text-lg-start">Sorry...</h2>
+          <p>There is currently no book being read by the club. Please check back later!</p>
+        </div>
+      </section>
+    {% endfor %}
+    <!-- End currently reading books sections -->
+    <!-- To be read books section -->
+    <section class="bg-beige px-3 py-5">
+      <div class="container px-0 text-center">
+        <h2 class="text-center">To be read/reading list title</h2>
+        <p class="text-center">
+          Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+        </p>
+        <button type="button" class="btn btn-secondary">View all books</button>
+        {% for book in to_be_read_books %}
+          <div class="col">
+            <h3 class="text-center">{{ book.title }}</h3>
+            <p class="text-center">{{ book.excerpt }}</p>
+            <a href="">Read more</a>
+          </div>
+        {% empty %}
+        {% endfor %}
+      </div>
+    </section>
+    <!-- End to be read books section -->
+    <!-- End home content -->
+  {% endblock %}

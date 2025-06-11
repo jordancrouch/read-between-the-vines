@@ -181,7 +181,7 @@ h6 {
 @media (min-width: 576px) {
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 220%;
+    flex-basis: 230%;
   }
 }
 
@@ -200,7 +200,7 @@ h6 {
 
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 160%;
+    flex-basis: 175%;
   }
 
   .hero .hero-container .hero-content-container {
@@ -222,12 +222,16 @@ h6 {
   }
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
-    flex-basis: 125%;
+    flex-basis: 140%;
   }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  /* Hero */
+  .hero .hero-container .hero-video-outer .hero-video {
+    flex-basis: 125%;
+  }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
