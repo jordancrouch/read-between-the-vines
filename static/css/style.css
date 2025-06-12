@@ -126,6 +126,11 @@ h6 {
   overflow: hidden;
 }
 
+.section-title {
+  max-width: 590px;
+  margin: 0 auto;
+}
+
 /* Navbar */
 .navbar-brand {
   flex: 0 1 180px;
@@ -207,6 +212,12 @@ h6 {
   margin: 0 auto;
 }
 
+/* Footer cta */
+#footer-cta img {
+  max-height: 458px;
+  object-fit: cover;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   /* Hero */
@@ -253,6 +264,11 @@ h6 {
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
     flex-basis: 140%;
+  }
+
+  /* Footer cta */
+  #footer-cta img {
+    max-height: unset;
   }
 }
 
