@@ -148,6 +148,7 @@ h6 {
 
 .hero .hero-container {
   position: relative;
+  border-radius: var(--border-radius);
 }
 
 .hero .hero-container .hero-video-outer {
@@ -203,8 +204,12 @@ h6 {
 
 .hero .hero-container .hero-content-container {
   position: relative;
-  min-height: 680px;
+  min-height: 652px;
   z-index: 1;
+}
+
+.hero.home-hero .hero-container .hero-content-container {
+  min-height: 680px;
 }
 
 .hero .hero-container .hero-content-container .hero-content {
@@ -245,6 +250,10 @@ h6 {
   }
 
   .hero .hero-container .hero-content-container {
+    min-height: 639px;
+  }
+
+  .hero.home-hero .hero-container .hero-content-container {
     min-height: 720px;
   }
 }
@@ -264,6 +273,10 @@ h6 {
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
     flex-basis: 140%;
+  }
+
+  .hero .hero-container .hero-content-container {
+    min-height: 652px;
   }
 
   /* Footer cta */

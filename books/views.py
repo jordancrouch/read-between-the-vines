@@ -1,7 +1,7 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.views import generic
 
-from .models import Books
+# from .models import Books
 from .utils import get_published_books
 
 
@@ -11,3 +11,12 @@ class BooksList(generic.ListView):
     queryset = get_published_books()
     template_name = "books/index.html"
     paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["currently_reading_books"] = get_published_books(category="CR")
+        context["to_be_read_books"] = get_published_books(category="TBR")
+        context["finished_reading_books"] = get_published_books(category="FR")
+
+        return context
