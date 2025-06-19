@@ -1,0 +1,39 @@
+{% load static %}
+<!-- To be read books section -->
+<section id="to-be-read"
+         class="bg-beige px-3 py-5"
+         aria-label="Books to be read section">
+    <div class="container px-0 text-center">
+        <div class="section-title">
+            <h2 class="text-center">To be read/reading list title</h2>
+            <p class="text-center">
+                Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+                phasellus mollis sit aliquam sit nullam.
+            </p>
+        </div>
+        <button type="button" class="btn btn-secondary">View all books</button>
+        <div class="row g-4 mt-4">
+            {% for book in to_be_read_books %}
+                <div class="col-12 col-lg-4">
+                    {% if "placeholder" in book.featured_image.url %}
+                        <img src="{% static "images/book-placeholder.png" %}"
+                             alt="Book Placeholder Image"
+                             class="book book-light mb-3">
+                    {% else %}
+                        <img src="{{ book.featured_image.url }}"
+                             alt="{{ post.title }}"
+                             class="book book-light mb-3">
+                    {% endif %}
+                    <h3 class="text-center">{{ book.title }}</h3>
+                    <p class="text-center">{{ book.excerpt }}</p>
+                    <a href="" class="read-more link-green">Read more</a>
+                </div>
+            {% empty %}
+            {% endfor %}
+        </div>
+    </div>
+    <img src="{% static 'images/tbr-filigree-3.svg' %}"
+         alt=""
+         class="bg-img-3">
+</section>
+<!-- End to be read books section -->

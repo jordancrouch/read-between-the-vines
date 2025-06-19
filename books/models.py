@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -26,6 +27,7 @@ class Books(models.Model):
     slug: models.SlugField = models.SlugField(max_length=100, unique=True)
     excerpt: models.TextField = models.TextField(null=True, blank=True)
     content: models.TextField = models.TextField()
+    featured_image = CloudinaryField("image", default="placeholder")
     created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
     updated_on: models.DateTimeField = models.DateTimeField(auto_now=True)
     status: models.IntegerField = models.IntegerField(

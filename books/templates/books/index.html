@@ -1,5 +1,23 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
-
+    <!-- Books content -->
+    <!-- Books hero -->
+    <section id="books-hero" class="hero mx-3" aria-label="Hero section">
+        <div class="container-xxl hero-container bg-green">
+            <div class="hero-content-container d-flex align-items-center">
+                <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                    <h1 class="text-center mb-4">Books page title to go here</h1>
+                    <p class="text-center mb-5">
+                        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End home hero -->
+    {% include "includes/currently_reading_section.html" %}
+    {% include "includes/to_be_read_section.html" %}
+    {% include "includes/finished_reading_section.html" %}
+    {% include "includes/footer_cta.html" %}
 {% endblock %}

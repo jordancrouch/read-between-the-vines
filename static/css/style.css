@@ -18,7 +18,9 @@
   --body-font-line-height: 30px;
   --font-light: 300;
   --font-normal: 400;
-  --font-bold: 600;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
   font-size: var(--body-font-size);
   line-height: var(--body-font-line-height);
 
@@ -66,7 +68,7 @@ h6 {
   font-family: var(--body-font);
   font-size: 0.7rem;
   line-height: 1rem;
-  font-weight: var(--font-bold);
+  font-weight: var(--font-semibold);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -76,10 +78,10 @@ h6 {
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   line-height: var(--body-font-line-height);
-  font-weight: var(--bold);
   --bs-border-radius: var(--button-border-radius);
   --bs-btn-padding-x: 1.2rem;
   --bs-btn-padding-y: 0.7rem;
+  --bs-btn-font-weight: var(--font-bold);
 }
 
 .btn-primary {
@@ -141,13 +143,31 @@ h6 {
   display: block;
 }
 
+#navbarNav .navbar-nav .nav-item a {
+  font-weight: var(--font-semibold);
+}
+
 /* Hero */
 .hero {
   position: relative;
+  overflow-x: clip;
+}
+
+.hero:before {
+  content: "";
+  position: absolute;
+  left: -121px;
+  bottom: -132px;
+  width: 335px;
+  height: 324px;
+  background-image: url(../images/hero-filigree.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .hero .hero-container {
   position: relative;
+  border-radius: var(--border-radius);
 }
 
 .hero .hero-container .hero-video-outer {
@@ -203,8 +223,12 @@ h6 {
 
 .hero .hero-container .hero-content-container {
   position: relative;
-  min-height: 680px;
+  min-height: 652px;
   z-index: 1;
+}
+
+.hero.home-hero .hero-container .hero-content-container {
+  min-height: 680px;
 }
 
 .hero .hero-container .hero-content-container .hero-content {
@@ -212,10 +236,141 @@ h6 {
   margin: 0 auto;
 }
 
+/* Currently reading section */
+#currently-reading {
+  position: relative;
+  overflow: hidden;
+}
+
+#currently-reading .container {
+  position: relative;
+  z-index: 1;
+}
+
+#currently-reading:after {
+  content: "";
+  position: absolute;
+  right: -360px;
+  bottom: -282px;
+  width: 632px;
+  height: 593px;
+  background-image: url("../images/currently-reading-filigree.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+/* To be read section */
+#to-be-read {
+  position: relative;
+  overflow: hidden;
+}
+
+#to-be-read .container {
+  position: relative;
+  z-index: 1;
+}
+
+#to-be-read:before {
+  content: "";
+  position: absolute;
+  left: -164px;
+  top: 20px;
+  width: 317px;
+  height: 238px;
+  background-image: url("../images/tbr-filigree-1.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+#to-be-read:after {
+  content: "";
+  position: absolute;
+  right: -125px;
+  top: 25%;
+  width: 414px;
+  height: 404px;
+  background-image: url("../images/tbr-filigree-2.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+#to-be-read .bg-img-3 {
+  position: absolute;
+  bottom: -60px;
+  left: -235px;
+  width: 477px;
+  height: 492px;
+  object-fit: contain;
+  z-index: 0;
+}
+
+/* Books */
+.book {
+  border-radius: 6px;
+  box-shadow: 0px 0px 24px 6px rgba(242, 234, 211, 0.25);
+}
+
+.book.book-light {
+  box-shadow: 0px 0px 24px 6px rgba(24, 23, 29, 0.25);
+}
+
 /* Footer cta */
 #footer-cta img {
   max-height: 458px;
   object-fit: cover;
+}
+
+#footer-cta .bg-green {
+  position: relative;
+  overflow: hidden;
+}
+
+#footer-cta .bg-green > div {
+  position: relative;
+  z-index: 1;
+}
+
+#footer-cta .bg-green:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 266px;
+  height: 209px;
+  background-image: url("../images/footer-cta-filigree.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+/* Footer */
+footer .footer-logo img {
+  display: block;
+  width: 100%;
+  max-width: 254px;
+}
+
+footer .social-links a {
+  background-color: var(--beige);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+footer .social-links a i {
+  color: var(--charcoal);
+}
+
+footer .social-links a:hover {
+  background-color: var(--white);
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -245,7 +400,16 @@ h6 {
   }
 
   .hero .hero-container .hero-content-container {
+    min-height: 639px;
+  }
+
+  .hero.home-hero .hero-container .hero-content-container {
     min-height: 720px;
+  }
+
+  /* Footer */
+  footer .footer-logo img {
+    max-width: 277px;
   }
 }
 
@@ -261,9 +425,18 @@ h6 {
   .navbar-brand {
     flex-basis: 244px;
   }
+
+  #navbarNav .navbar-nav .nav-item:last-child {
+    margin-left: 10px;
+  }
+
   /* Hero */
   .hero .hero-container .hero-video-outer .hero-video {
     flex-basis: 140%;
+  }
+
+  .hero .hero-container .hero-content-container {
+    min-height: 652px;
   }
 
   /* Footer cta */
