@@ -1,46 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-  <!-- Home content -->
-  <!-- Home hero -->
-  <section id="home-hero" class="hero home-hero mx-3" aria-label="Hero section">
-    <div class="container-xxl hero-container">
-      <div class="hero-video-container bg-green">
-        <div class="hero-video-outer">
-          <div class="hero-video">
-            <div class="media-wrapper">
-              <video autoplay
-                     muted
-                     playsinline
-                     loop
-                     preload="none"
-                     poster="{% static 'images/home-hero-video-poster.webp' %}"
-                     width="1280"
-                     height="720">
-                <source src="{% static 'videos/home-hero-video-720p.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
+    <!-- Home content -->
+    <!-- Home hero -->
+    <section id="home-hero" class="hero home-hero" aria-label="Hero section">
+        <div class="hero-container mx-3">
+            <div class="container-xxl hero-container">
+                <div class="hero-video-container bg-green">
+                    <div class="hero-video-outer">
+                        <div class="hero-video">
+                            <div class="media-wrapper">
+                                <video autoplay
+                                       muted
+                                       playsinline
+                                       loop
+                                       preload="none"
+                                       poster="{% static 'images/home-hero-video-poster.webp' %}"
+                                       width="1280"
+                                       height="720">
+                                    <source src="{% static 'videos/home-hero-video-720p.mp4' %}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-content-container d-flex align-items-center">
+                    <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="text-center mb-4">Ink-stained hands. Candlelit pages. Timeless stories.</h1>
+                        <p class="text-center mb-5">
+                            Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+                        </p>
+                        <div class="button-group d-flex gap-2 flex-wrap justify-content-center">
+                            <button type="button" class="btn btn-secondary">View all books</button>
+                            <button type="button" class="btn btn-primary">Sign up now</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="hero-content-container d-flex align-items-center">
-        <div class="hero-content d-flex flex-column justify-content-center align-items-center">
-          <h1 class="text-center mb-4">Ink-stained hands. Candlelit pages. Timeless stories.</h1>
-          <p class="text-center mb-5">
-            Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
-          </p>
-          <div class="button-group d-flex gap-2 flex-wrap justify-content-center">
-            <button type="button" class="btn btn-secondary">View all books</button>
-            <button type="button" class="btn btn-primary">Sign up now</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End home hero -->
-  {% include "includes/currently_reading_section.html" %}
-  {% include "includes/to_be_read_section.html" %}
-  {% include "includes/footer_cta.html" %}
-  <!-- End home content -->
+    </section>
+    <!-- End home hero -->
+    {% include "includes/currently_reading_section.html" %}
+    {% include "includes/to_be_read_section.html" %}
+    {% include "includes/footer_cta.html" %}
+    <!-- End home content -->
 {% endblock %}
