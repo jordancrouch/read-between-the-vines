@@ -1,23 +1,34 @@
+{% load static %}
 <!-- Finished reading books section -->
 <section class="px-3 py-5" aria-label="Finished reading books section">
-  <div class="container px-0 text-center">
-    <div class="section-title">
-      <h2 class="text-center">Finished reading lorem ipsum dolor sit amet</h2>
-      <p class="text-center">
-        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-        phasellus mollis sit aliquam sit nullam.
-      </p>
+    <div class="container px-0 text-center">
+        <div class="section-title">
+            <h2 class="text-center">Finished reading lorem ipsum dolor sit amet</h2>
+            <p class="text-center">
+                Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+                phasellus mollis sit aliquam sit nullam.
+            </p>
+        </div>
+        <button type="button" class="btn btn-secondary">View all books</button>
+        <div class="row g-4 mt-4">
+            {% for book in finished_reading_books %}
+                <div class="col-12 col-lg-4">
+                    {% if "placeholder" in book.featured_image.url %}
+                        <img src="{% static "images/book-placeholder.png" %}"
+                             alt="Book Placeholder Image"
+                             class="book mb-3">
+                    {% else %}
+                        <img src="{{ book.featured_image.url }}"
+                             alt="{{ post.title }}"
+                             class="book mb-3">
+                    {% endif %}
+                    <h3 class="text-center">{{ book.title }}</h3>
+                    <p class="text-center">{{ book.excerpt }}</p>
+                    <a href="" class="read-more link-green">Read more</a>
+                </div>
+            {% empty %}
+            {% endfor %}
+        </div>
     </div>
-    <button type="button" class="btn btn-secondary">View all books</button>
-    <div class="row g-4 mt-4">
-      {% for book in finished_reading_books %}
-      <div class="col-12 col-lg-4">
-        <h3 class="text-center">{{ book.title }}</h3>
-        <p class="text-center">{{ book.excerpt }}</p>
-        <a href="" class="read-more link-green">Read more</a>
-      </div>
-      {% empty %} {% endfor %}
-    </div>
-  </div>
 </section>
 <!-- End to be read books section -->

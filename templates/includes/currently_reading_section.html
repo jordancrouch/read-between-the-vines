@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Currently reading books sections -->
 {% for book in currently_reading_books %}
     <section id="currently-reading"
@@ -12,8 +13,19 @@
                     <div class="col-12 col-lg-6 d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-start pe-lg-4">
                         <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
                         <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+                        <button type="button" class="btn btn-primary">Go to book</button>
                     </div>
-                    <div class="col-12 col-lg-6 ps-lg-4"></div>
+                    <div class="col-12 col-lg-6 ps-lg-4 d-flex justify-content-center">
+                        {% if "placeholder" in book.featured_image.url %}
+                            <img src="{% static "images/book-placeholder.png" %}"
+                                 alt="Book Placeholder Image"
+                                 class="book">
+                        {% else %}
+                            <img src="{{ book.featured_image.url }}"
+                                 alt="{{ post.title }}"
+                                 class="book">
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </section>
