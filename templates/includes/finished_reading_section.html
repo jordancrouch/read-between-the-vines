@@ -8,9 +8,9 @@
                 Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
                 phasellus mollis sit aliquam sit nullam.
             </p>
+            <a href="{% url 'books_archive' %}" class="btn btn-secondary mt-3">View all finished books</a>
         </div>
-        <button type="button" class="btn btn-secondary">View all books</button>
-        <div class="row g-4 mt-4">
+        <div class="row g-4 mt-4 justify-content-center">
             {% for book in finished_reading_books %}
                 <div class="col-12 col-lg-4">
                     {% if "placeholder" in book.featured_image.url %}
@@ -24,7 +24,7 @@
                     {% endif %}
                     <h3 class="text-center">{{ book.title }}</h3>
                     <p class="text-center">{{ book.excerpt }}</p>
-                    <a href="" class="read-more link-green">Read more</a>
+                    <a href="{% url 'book_detail' book.slug %}" class="read-more link-beige">Read more</a>
                 </div>
             {% empty %}
             {% endfor %}
