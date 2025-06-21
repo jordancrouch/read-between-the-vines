@@ -1,5 +1,7 @@
 {% load static %}
 {% url "home" as home_url %}
+{% url "books" as books_url %}
+{% url "books:books" as book_url %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,10 +42,12 @@
                      id="navbarNav">
                     <ul class="navbar-nav align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link{% if request.path == home_url %} active" aria-current="page{% endif %}"
+                               href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Books</a>
+                            <a class="nav-link{% if request.resolver_match.url_name in 'books books_archive book_detail' %} active"aria-current="page{% endif %}"
+                               href="{% url 'books:books' %}">Books</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>

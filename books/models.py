@@ -20,8 +20,12 @@ class Books(models.Model):
         CURRENTLY_READING = "CR", "Currently Reading"
         FINISHED_READING = "FR", "Finished Reading"
 
+    @property
+    def category_label(self):
+        return self.get_category_display()
+
     def __str__(self):
-        return f"{self.title} | Category: {self.get_category_display()} | Status: {self.get_status_display()}"
+        return f"{self.title} | Category: {self.category_label} | Status: {self.get_status_display()}"
 
     title: models.CharField = models.CharField(max_length=100, unique=True)
     slug: models.SlugField = models.SlugField(max_length=100, unique=True)

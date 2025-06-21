@@ -2,10 +2,17 @@
 {% load static %}
 {% block content %}
     <!-- Book detail hero -->
-    <section id="book-detail" class="px-3 py-5" aria-label="Book detail hero">
+    <section id="book-detail-hero" class="px-3 py-5" aria-label="Book detail hero">
         <div class="container px-0">
-            <div class="row g-4">
+            <div class="row flex-lg-row-reverse g-4">
                 <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">
+                    <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
+                        <div class="category">{{ book.category_label }}</div>
+                        <h1 class="text-center text-lg-start">{{ book.title }}</h1>
+                        <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
                     {% if "placeholder" in book.featured_image.url %}
                         <img src="{% static "images/book-placeholder.png" %}"
                              alt="Book Placeholder Image"
@@ -16,14 +23,21 @@
                              class="book">
                     {% endif %}
                 </div>
-                <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
-                    <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
-                        <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
-                        <p class="text-center text-lg-start">{{ book.excerpt }}</p>
-                    </div>
-                </div>
             </div>
-        </section>
-        <!-- End book detail content -->
-        {% include "includes/footer_cta.html" %}
-    {% endblock %}
+        </div>
+    </section>
+    <!-- End book detail content -->
+    <!-- Book content -->
+    <section id="book-detail-content"
+             class="px-3 py-5"
+             aria-label="Book detail content">
+        <div class="container px-0">
+            <div class="row g-4">
+                <div class="col-12 col-lg-8 pt-lg-3 mt-lg-0">{{ book.content | safe }}</div>
+                <div class="col-12 col-lg-4 pt-lg-3 mt-lg-0">Sidebar</div>
+            </div>
+        </div>
+    </section>
+    <!-- End book content -->
+    {% include "includes/footer_cta.html" %}
+{% endblock %}

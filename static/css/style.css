@@ -49,6 +49,40 @@ h5 {
   font-weight: var(--font-light);
 }
 
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  text-decoration: none;
+  color: var(--beige);
+  transition: color 0.2s ease-in-out;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover {
+  color: var(--white);
+}
+
+.bg-beige h1 a,
+.bg-beige h2 a,
+.bg-beige h3 a,
+.bg-beige h4 a,
+.bg-beige h5 a {
+  color: var(--charcoal);
+}
+
+.bg-beige h1 a:hover,
+.bg-beige h2 a:hover,
+.bg-beige h3 a:hover,
+.bg-beige h4 a:hover,
+.bg-beige h5 a:hover {
+  color: var(--green);
+}
+
 h1 {
   font-size: 2.5rem;
   line-height: 2.6rem;
@@ -64,13 +98,28 @@ h3 {
   line-height: 2rem;
 }
 
-h6 {
+h6,
+.category {
   font-family: var(--body-font);
   font-size: 0.7rem;
   line-height: 1rem;
   font-weight: var(--font-semibold);
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.category {
+  border: 1px solid var(--white);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  align-self: center;
+}
+
+.bg-beige .category {
+  color: var(--brown);
+  border-color: var(--brown);
 }
 
 /* Buttons */
@@ -369,6 +418,7 @@ h6 {
   margin: 0 auto;
   border-radius: 6px;
   box-shadow: 0px 0px 24px 6px rgba(242, 234, 211, 0.25);
+  display: block;
 }
 
 .book.book-light {
@@ -497,6 +547,11 @@ footer .social-links a:hover {
     min-height: 652px;
   }
 
+  #currently-reading .category,
+  #book-detail-hero .category {
+    align-self: flex-start;
+  }
+
   /* Footer cta */
   #footer-cta img {
     max-height: unset;
@@ -529,8 +584,13 @@ footer .social-links a:hover {
   .book-content-container {
     max-width: 380px;
   }
+
   .book {
     max-width: 380px;
+  }
+
+  #book-detail-hero .book-content-container {
+    max-width: 100%;
   }
 }
 
