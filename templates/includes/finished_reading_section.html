@@ -8,12 +8,13 @@
                 Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
                 phasellus mollis sit aliquam sit nullam.
             </p>
-            <a href="{% url 'books_archive' %}" class="btn btn-secondary mt-3">View all finished books</a>
+            <a href="{% url 'books:books_archive' %}" class="btn btn-secondary mt-3">View all finished books</a>
         </div>
         <div class="row g-4 mt-4 justify-content-center">
             {% for book in finished_reading_books %}
                 <div class="col-12 col-lg-4">
-                    <a href="{% url 'book_detail' book.slug %}" title="{{ book.title }}">
+                    <a href="{% url 'books:book_detail' book.slug %}"
+                       title="{{ book.title }}">
                         {% if "placeholder" in book.featured_image.url %}
                             <img src="{% static "images/book-placeholder.png" %}"
                                  alt="Book Placeholder Image"
@@ -26,10 +27,12 @@
                     </a>
                     <div class="category">{{ book.category_label }}</div>
                     <h3 class="text-center">
-                        <a href="{% url 'book_detail' book.slug %}" title="{{ book.title }}">{{ book.title }}</a>
+                        <a href="{% url 'books:book_detail' book.slug %}"
+                           title="{{ book.title }}">{{ book.title }}</a>
                     </h3>
                     <p class="text-center">{{ book.excerpt }}</p>
-                    <a href="{% url 'book_detail' book.slug %}" class="read-more link-beige">Read more</a>
+                    <a href="{% url 'books:book_detail' book.slug %}"
+                       class="read-more link-beige">Read more</a>
                 </div>
             {% empty %}
             {% endfor %}

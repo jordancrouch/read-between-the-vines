@@ -547,7 +547,8 @@ footer .social-links a:hover {
     min-height: 652px;
   }
 
-  #currently-reading .category {
+  #currently-reading .category,
+  #book-detail-hero .category {
     align-self: flex-start;
   }
 
@@ -583,8 +584,13 @@ footer .social-links a:hover {
   .book-content-container {
     max-width: 380px;
   }
+
   .book {
     max-width: 380px;
+  }
+
+  #book-detail-hero .book-content-container {
+    max-width: 100%;
   }
 }
 

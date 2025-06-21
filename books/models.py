@@ -20,6 +20,7 @@ class Books(models.Model):
         CURRENTLY_READING = "CR", "Currently Reading"
         FINISHED_READING = "FR", "Finished Reading"
 
+    @property
     def category_label(self):
         return self.get_category_display()
 

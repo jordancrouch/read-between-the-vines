@@ -16,11 +16,13 @@
                             {% if request.path != home_url %}<div class="category">{{ book.category_label }}</div>{% endif %}
                             <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
                             <p class="text-center text-lg-start">{{ book.excerpt }}</p>
-                            <a href="{% url 'book_detail' book.slug %}" class="btn btn-primary mt-3">Go to book</a>
+                            <a href="{% url 'books:book_detail' book.slug %}"
+                               class="btn btn-primary mt-3">Go to book</a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">
-                        <a href="{% url 'book_detail' book.slug %}" title="{{ book.title }}">
+                        <a href="{% url 'books:book_detail' book.slug %}"
+                           title="{{ book.title }}">
                             {% if "placeholder" in book.featured_image.url %}
                                 <img src="{% static "images/book-placeholder.png" %}"
                                      alt="Book Placeholder Image"
