@@ -10,10 +10,12 @@
                 {% else %}
                     <div class="row flex-lg-row-reverse g-4">
                     {% endif %}
-                    <div class="col-12 col-lg-6 d-lg-flex flex-lg-column justify-content-lg-center align-items-lg-start pe-lg-4">
-                        <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
-                        <p class="text-center text-lg-start">{{ book.excerpt }}</p>
-                        <button type="button" class="btn btn-primary">Go to book</button>
+                    <div class="col-12 col-lg-6 pe-lg-4 d-flex justify-content-stretch">
+                        <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
+                            <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
+                            <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+                            <button type="button" class="btn btn-primary">Go to book</button>
+                        </div>
                     </div>
                     <div class="col-12 col-lg-6 ps-lg-4 d-flex justify-content-center">
                         {% if "placeholder" in book.featured_image.url %}
@@ -28,12 +30,20 @@
                     </div>
                 </div>
             </div>
+            {% if forloop.last %}
+                <div class="currently-reading-bg-icon">
+                    <img src="{% static 'images/currently-reading-filigree.svg' %}" alt="">
+                </div>
+            {% endif %}
         </section>
     {% empty %}
         <section class="px-3 py-5" aria-label="Book currently being read section">
             <div class="container px-0">
                 <h2 class="text-center text-lg-start">Sorry...</h2>
                 <p>There is currently no book being read by the club. Please check back later!</p>
+            </div>
+            <div class="currently-reading-bg-icon">
+                <img src="{% static 'images/currently-reading-filigree.svg' %}" alt="">
             </div>
         </section>
     {% endfor %}

@@ -3,14 +3,24 @@
 {% block content %}
     <!-- Books content -->
     <!-- Books hero -->
-    <section id="books-hero" class="hero mx-3" aria-label="Hero section">
-        <div class="container-xxl hero-container bg-green">
-            <div class="hero-content-container d-flex align-items-center">
-                <div class="hero-content d-flex flex-column justify-content-center align-items-center">
-                    <h1 class="text-center mb-4">Books page title to go here</h1>
-                    <p class="text-center mb-5">
-                        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
-                    </p>
+    <section id="books-hero" class="hero" aria-label="Hero section">
+        <div class="hero-container mx-3">
+            <div class="container-xxl hero-container bg-green">
+                <div class="hero-bg-img-container">
+                    <img srcset="{% static 'images/books-hero-mobile.jpg' %} 390w,
+                                 {% static 'images/books-hero-desktop.jpg' %} 1220w"
+                         sizes="(max-width: 600px) 390px,
+                                1220px"
+                         src="{% static 'images/books-hero-desktop.jpg' %}"
+                         alt="A large dark academia themed library with bookshelves on each wall, lined with foliage and a desk and seating in the middle of the room">
+                </div>
+                <div class="hero-content-container d-flex align-items-center">
+                    <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="text-center mb-4">Books page title to go here</h1>
+                        <p class="text-center mb-5">
+                            Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
