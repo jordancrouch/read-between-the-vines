@@ -140,6 +140,9 @@ h6,
   --bs-btn-hover-color: var(--charcoal);
   --bs-btn-hover-bg: var(--white);
   --bs-btn-hover-border-color: var(--white);
+  --bs-btn-active-color: var(--charcoal);
+  --bs-btn-active-bg: var(--white);
+  --bs-btn-active-border-color: var(--white);
 }
 
 .btn-secondary {
@@ -149,6 +152,31 @@ h6,
   --bs-btn-hover-color: var(--charcoal);
   --bs-btn-hover-bg: var(--white);
   --bs-btn-hover-border-color: var(--white);
+  --bs-btn-active-color: var(--charcoal);
+  --bs-btn-active-bg: var(--white);
+  --bs-btn-active-border-color: var(--white);
+}
+
+.btn-outline {
+  border: 2px solid var(--beige);
+  color: var(--beige);
+  --bs-btn-hover-border-color: var(--white);
+  --bs-btn-active-color: var(--charcoal);
+  --bs-btn-active-bg: var(--white);
+  --bs-btn-active-border-color: var(--white);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  border-color: var(--white);
+  background-color: var(--white);
+  color: var(--charcoal);
+}
+
+.btn.active {
+  --bs-btn-active-bg: var(--white);
+  --bs-btn-active-border-color: var(--white);
+  --bs-btn-active-color: var(--charcoal);
 }
 
 /* Links */
@@ -191,6 +219,11 @@ h6,
   width: 100%;
 }
 
+.content {
+  max-width: 590px;
+  margin: 0 auto;
+}
+
 /* Navbar */
 .navbar-brand {
   flex: 0 1 180px;
@@ -203,6 +236,20 @@ h6,
 
 #navbarNav .navbar-nav .nav-item a {
   font-weight: var(--font-semibold);
+}
+
+#navbarNav .navbar-nav .nav-item .btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.navbar-nav .nav-link.active {
+  --bs-navbar-active-color: var(--white);
+}
+
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:hover {
+  --bs-nav-link-hover-color: var(--white);
 }
 
 /* Hero */
@@ -425,6 +472,40 @@ h6,
   box-shadow: 0px 0px 24px 6px rgba(24, 23, 29, 0.25);
 }
 
+/* Sidebar */
+.sidebar {
+  border-radius: 20px;
+}
+
+/* Share links */
+.share-links {
+  gap: 20px;
+}
+
+.share-links a i {
+  color: var(--beige);
+  transition: color 0.2s ease-in-out;
+}
+
+.share-links a:hover i,
+.share-links a:focus i,
+.share-links a:active i {
+  color: var(--white);
+}
+
+/* Comments */
+#comment-section .comments {
+  gap: 40px;
+}
+
+.comment .comment-body {
+  font-style: italic;
+}
+
+.comment.faded p:not(.approval) {
+  opacity: 0.5;
+}
+
 /* Footer cta */
 #footer-cta img {
   max-height: 458px;
@@ -534,7 +615,9 @@ footer .social-links a:hover {
     flex-basis: 244px;
   }
 
-  #navbarNav .navbar-nav .nav-item:last-child {
+  #navbarNav .navbar-nav .nav-item .btn {
+    margin-top: 0;
+    margin-bottom: 0;
     margin-left: 10px;
   }
 
