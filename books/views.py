@@ -20,3 +20,15 @@ class BooksList(generic.ListView):
         context["finished_reading_books"] = get_published_books(category="FR")
 
         return context
+
+
+class BooksArciveList(generic.ListView):
+    queryset = get_published_books(category="FR")
+    template_name = "books/archive.html"
+    context_object_name = "books_archive"
+    paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context

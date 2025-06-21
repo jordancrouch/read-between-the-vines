@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Books archive content -->
+    <!-- Books hero -->
+    <section id="books-hero" class="hero mx-3" aria-label="Hero section">
+        <div class="container-xxl hero-container bg-green">
+            <div class="hero-content-container d-flex align-items-center">
+                <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                    <h1 class="text-center mb-4">Books archive title to go here...</h1>
+                    <p class="text-center mb-5">
+                        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
+                        phasellus mollis sit aliquam sit nullam.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End books hero -->
+    <!-- Books archive section -->
+    <section class="px-3 py-5" aria-label="Books archive section">
+        <div class="container px-0 text-center">
+            <div class="row g-4 mt-4">
+                {% for book in books_archive %}
+                    <div class="col-12 col-lg-4">
+                        {% if "placeholder" in book.featured_image.url %}
+                            <img src="{% static "images/book-placeholder.png" %}"
+                                 alt="Book Placeholder Image"
+                                 class="book mb-3">
+                        {% else %}
+                            <img src="{{ book.featured_image.url }}"
+                                 alt="{{ post.title }}"
+                                 class="book mb-3">
+                        {% endif %}
+                        <h3 class="text-center">{{ book.title }}</h3>
+                        <p class="text-center">{{ book.excerpt }}</p>
+                        <a href="" class="read-more link-green">Read more</a>
+                    </div>
+                {% empty %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% include
+    "includes/footer_cta.html" %}
+{% endblock %}
