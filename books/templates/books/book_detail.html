@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% block head_title %}
+    {% trans book.title %}
+{% endblock head_title %}
+{% load static %}
 {% load static %}
 {% block content %}
     <!-- Book detail hero -->
@@ -33,8 +38,23 @@
              aria-label="Book detail content">
         <div class="container px-0">
             <div class="row g-4">
-                <div class="col-12 col-lg-8 pt-lg-3 mt-lg-0">{{ book.content | safe }}</div>
-                <div class="col-12 col-lg-4 pt-lg-3 mt-lg-0">Sidebar</div>
+                <div class="col-12 col-lg-8 pt-lg-3 pe-lg-5 mt-lg-0">
+                    <div class="book-content">{{ book.content | safe }}</div>
+                    <div class="share-links mt-5">
+                        <h6>Share this book:</h6>
+                        Links
+                    </div>
+                    <div class="back-link mt-5">
+                        <a href="{% url 'books:books' %}" class="read-more">Back to all books</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 pt-lg-3 mt-lg-0">
+                    <div class="sidebar bg-beige p-4 p-lg-5 d-flex flex-column">
+                        <h3>Want to leave a comment?</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+                        <a href="#" class="btn btn-secondary">Sign up</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

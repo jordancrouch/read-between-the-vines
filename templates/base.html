@@ -2,12 +2,18 @@
 {% url "home" as home_url %}
 {% url "books" as books_url %}
 {% url "books:books" as book_url %}
+{% url "account_login" as login_url %}
+{% url "account_signup" as signup_url %}
+{% url "account_logout" as logout_url %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ page_title|default:"Home" }} | Read Between the Vines</title>
+        <title>
+            {% block head_title %}
+            {% endblock head_title %}
+        | Read Between the Vines</title>
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +27,7 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg px-3" data-bs-theme="dark">
             <div class="container-xxl px-0">
@@ -52,15 +58,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-primary">Sign up</button>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="btn btn-primary{% if request.path == logout_url %} active{% endif %}"
+                                   aria-current="page"
+                                   href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-outline{% if request.path == signup_url %} active{% endif %}"
+                                   aria-current="page"
+                                   href="{% url 'account_signup' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary{% if request.path == login_url %} active{% endif %}"
+                                   aria-current="page"
+                                   href="{% url 'account_login' %}">Login</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Main -->
-        <main>
+        <main class="flex-fill">
             {% block content %}
             {% endblock content %}
         </main>
@@ -75,7 +96,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-6 ps-lg-4">
-                        <div class="social-links d-flex gap-3 justify-content-center justify-content-lg-end mb-3">
+                        <div class="social-links d-flex flex-wrap gap-3 justify-content-center justify-content-lg-end mb-3">
                             <a href="https://www.facebook.com/"
                                target="_blank"
                                aria-label="Visit our Facebook page (opens in a new tab)"

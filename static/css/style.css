@@ -10,6 +10,7 @@
   /* Override Bootstrap variables */
   --bs-body-bg: var(--charcoal);
   --bs-body-color: var(--white);
+  --bs-navbar-active-color: var(--white);
 
   /* Typography variables and root size */
   --heading-font: "Grenze Gotisch", serif;
@@ -151,6 +152,23 @@ h6,
   --bs-btn-hover-border-color: var(--white);
 }
 
+.btn-outline {
+  border: 2px solid var(--beige);
+  color: var(--beige);
+}
+
+.btn-outline:hover {
+  border-color: var(--white);
+  background-color: var(--white);
+  color: var(--charcoal);
+}
+
+.btn.active {
+  --bs-btn-active-bg: var(--white);
+  --bs-btn-active-border-color: var(--white);
+  --bs-btn-active-color: var(--charcoal);
+}
+
 /* Links */
 .link-beige {
   color: var(--beige);
@@ -191,6 +209,11 @@ h6,
   width: 100%;
 }
 
+.content {
+  max-width: 590px;
+  margin: 0 auto;
+}
+
 /* Navbar */
 .navbar-brand {
   flex: 0 1 180px;
@@ -203,6 +226,11 @@ h6,
 
 #navbarNav .navbar-nav .nav-item a {
   font-weight: var(--font-semibold);
+}
+
+#navbarNav .navbar-nav .nav-item .btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Hero */
@@ -425,6 +453,10 @@ h6,
   box-shadow: 0px 0px 24px 6px rgba(24, 23, 29, 0.25);
 }
 
+.sidebar {
+  border-radius: 20px;
+}
+
 /* Footer cta */
 #footer-cta img {
   max-height: 458px;
@@ -534,7 +566,9 @@ footer .social-links a:hover {
     flex-basis: 244px;
   }
 
-  #navbarNav .navbar-nav .nav-item:last-child {
+  #navbarNav .navbar-nav .nav-item .btn {
+    margin-top: 0;
+    margin-bottom: 0;
     margin-left: 10px;
   }
 
