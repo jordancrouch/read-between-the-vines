@@ -4,7 +4,7 @@
     {% trans book.title %}
 {% endblock head_title %}
 {% load static %}
-{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
     <!-- Book detail hero -->
     <section id="book-detail-hero" class="px-3 py-5" aria-label="Book detail hero">
@@ -42,22 +42,79 @@
                     <div class="book-content">{{ book.content | safe }}</div>
                     <div class="share-links mt-5">
                         <h6>Share this book:</h6>
-                        Links
+                        <div class="d-flex share-links">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                               target="_blank"
+                               title="Share this book on Facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check this out! "
+                               target="_blank"
+                               title="Share this book on X"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
+                               target="_blank"
+                               title="Share this book on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="mailto:?subject=Check this out&body={{ request.build_absolute_uri }}"
+                               target="_blank"
+                               title="Share this book via email"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
                     </div>
                     <div class="back-link mt-5">
-                        <a href="{% url 'books:books' %}" class="read-more">Back to all books</a>
+                        <a href="{% url 'books:books' %}" class="read-more link-beige"><i class="fa-solid fa-arrow-left"></i> Back to all books</a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 pt-lg-3 mt-lg-0">
                     <div class="sidebar bg-beige p-4 p-lg-5 d-flex flex-column">
                         <h3>Want to leave a comment?</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
-                        <a href="#" class="btn btn-secondary">Sign up</a>
+                        <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign up</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- End book content -->
+    <!-- Comments section -->
+    <section id="comment-section"
+             class="px-3 py-5"
+             aria-label="Book detail comments">
+        <div class="container px-0">
+            <div class="row">
+                <div class="content">
+                    <h3 class="mb-5">Comments:</h3>
+                    <div class="comments d-flex flex-column">
+                        {% for comment in comments %}
+                            <div id="comment-{{ comment.id }}"
+                                 class="comment{% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
+                                <p>
+                                    <strong>{{ comment.author }}</strong>, {{ comment.created_on }} wrote:
+                                </p>
+                                <div class="comment-body">{{ comment.body | linebreaks }}</div>
+                                {% if not comment.approved and comment.author == user %}
+                                    <p class="approval">This comment is awaiting approval.</p>
+                                {% endif %}
+                            </div>
+                        {% empty %}
+                            <p>No comments yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="content">
+                    {% if user.is_authenticated %}
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form method="post" id="comment-form">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    {% else %}
+                        <p>Log in to leave a comment</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End comments section -->
     {% include "includes/footer_cta.html" %}
 {% endblock %}

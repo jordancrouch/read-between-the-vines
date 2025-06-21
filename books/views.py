@@ -1,7 +1,9 @@
-# from django.shortcuts import render
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
+from django.views.generic.edit import FormMixin
 
+from .forms import CommentForm
 from .models import Books
 from .utils import get_published_books
 
@@ -34,10 +36,11 @@ class BooksArciveList(generic.ListView):
         return context
 
 
-class BookDetail(generic.DetailView):
+class BookDetail(FormMixin, generic.DetailView):
     model = Books
     template_name = "books/book_detail.html"
     context_object_name = "book"
+    form_class = CommentForm
 
     def get_queryset(self):
         return Books.objects.filter(status=1)
@@ -46,8 +49,35 @@ class BookDetail(generic.DetailView):
         queryset = self.get_queryset()
         return get_object_or_404(queryset, slug=self.kwargs.get("slug"))
 
+    def get_success_url(self):
+        return self.request.path
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.book = self.object
+            comment.save()
+            messages.add_message(
+                request, messages.SUCCESS, "Comment submitted and awaiting approval"
+            )
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         book = self.get_object()
+
+        comments = book.comments.all().order_by("-created_on")
+        comment_count = book.comments.filter(approved=True).count()
+        comment_form = CommentForm
+
+        context["comments"] = comments
+        context["comment_count"] = comment_count
+        context["comment_form"] = comment_form
 
         return context
