@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Book detail hero -->
+    <section id="book-detail" class="px-3 py-5" aria-label="Book detail hero">
+        <div class="container px-0">
+            <div class="row g-4">
+                <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">
+                    {% if "placeholder" in book.featured_image.url %}
+                        <img src="{% static "images/book-placeholder.png" %}"
+                             alt="Book Placeholder Image"
+                             class="book">
+                    {% else %}
+                        <img src="{{ book.featured_image.url }}"
+                             alt="{{ post.title }}"
+                             class="book">
+                    {% endif %}
+                </div>
+                <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
+                    <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
+                        <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
+                        <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End book detail content -->
+        {% include "includes/footer_cta.html" %}
+    {% endblock %}

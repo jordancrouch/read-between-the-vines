@@ -107,6 +107,11 @@ h6 {
   color: var(--beige);
 }
 
+.link-beige:hover,
+.link-beige:focus {
+  color: var(--white);
+}
+
 .link-green {
   color: var(--green);
 }

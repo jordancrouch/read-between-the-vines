@@ -10,14 +10,14 @@
                 {% else %}
                     <div class="row flex-lg-row-reverse g-4">
                     {% endif %}
-                    <div class="col-12 col-lg-6 pe-lg-4 d-flex justify-content-stretch">
+                    <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
                         <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
                             <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
                             <p class="text-center text-lg-start">{{ book.excerpt }}</p>
-                            <button type="button" class="btn btn-primary">Go to book</button>
+                            <a href="{% url 'book_detail' book.slug %}" class="btn btn-primary">Go to book</a>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 ps-lg-4 d-flex justify-content-center">
+                    <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">
                         {% if "placeholder" in book.featured_image.url %}
                             <img src="{% static "images/book-placeholder.png" %}"
                                  alt="Book Placeholder Image"
