@@ -1,10 +1,11 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, reverse
 from django.views import generic
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, UpdateView
 
 from .forms import CommentForm
-from .models import Books
+from .models import Books, Comment
 from .utils import get_published_books
 
 
@@ -81,3 +82,29 @@ class BookDetail(FormMixin, generic.DetailView):
         context["comment_form"] = comment_form
 
         return context
+
+
+class CommentEditView(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    pk_url_kwarg = "comment_id"
+    http_method_names = ["post"]
+
+    def dispatch(self, request, *args, **kwargs):
+        self.book = get_object_or_404(Books, slug=self.kwargs["slug"], status=1)
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.post = self.post
+        comment.approved = False
+        comment.save()
+        messages.success(self.request, "Comment updated!")
+        return HttpResponseRedirect(reverse("books:book_detail", args=[self.book.slug]))
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Error updating comment!")
+        return HttpResponseRedirect(reverse("books:book_detail", args=[self.book.slug]))
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)

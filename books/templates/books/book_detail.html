@@ -87,9 +87,12 @@
                                 <p>
                                     <strong>{{ comment.author }}</strong>, {{ comment.created_on }} wrote:
                                 </p>
-                                <div class="comment-body">{{ comment.body | linebreaks }}</div>
+                                <div id="comment-text" class="comment-body">{{ comment.body | linebreaks }}</div>
                                 {% if not comment.approved and comment.author == user %}
                                     <p class="approval">This comment is awaiting approval.</p>
+                                {% endif %}
+                                {% if user.is_authenticated and comment.author == user %}
+                                    <button class="btn btn-edit btn-primary" comment_id="{{ comment.id }}">Edit</button>
                                 {% endif %}
                             </div>
                         {% empty %}
@@ -117,4 +120,7 @@
     </section>
     <!-- End comments section -->
     {% include "includes/footer_cta.html" %}
+{% endblock %}
+{% block extras %}
+    <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
