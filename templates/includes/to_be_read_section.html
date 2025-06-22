@@ -16,7 +16,8 @@
         <div class="row g-4 mt-4 justify-content-center">
             {% for book in to_be_read_books %}
                 <div class="col-12 col-lg-4">
-                    <a href="{% url 'books:book_detail' book.slug %}"
+                    <a class="book-cover"
+                       href="{% url 'books:book_detail' book.slug %}"
                        title="{{ book.title }}">
                         {% if "placeholder" in book.featured_image.url %}
                             <img src="{% static "images/book-placeholder.png" %}"

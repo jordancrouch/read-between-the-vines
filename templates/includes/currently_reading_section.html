@@ -46,7 +46,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">
-                        <a href="{% url 'books:book_detail' book.slug %}"
+                        <a class="book-cover"
+                           href="{% url 'books:book_detail' book.slug %}"
                            title="{{ book.title }}">
                             {% if "placeholder" in book.featured_image.url %}
                                 <img src="{% static "images/book-placeholder.png" %}"
