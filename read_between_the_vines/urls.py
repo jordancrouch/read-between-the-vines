@@ -16,7 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.http import HttpResponseNotFound
+from django.shortcuts import render
 from django.urls import include, path
+
+
+def trigger_404(request):
+    return render(request, "404.html", status=404)
+
 
 urlpatterns = [
     path("accounts/", include("allauth.urls")),
@@ -24,4 +31,5 @@ urlpatterns = [
     path("summernote/", include("django_summernote.urls")),
     path("", include("home.urls"), name="home-urls"),
     path("books/", include("books.urls", namespace="books"), name="books-urls"),
+    path("404/", trigger_404),
 ]

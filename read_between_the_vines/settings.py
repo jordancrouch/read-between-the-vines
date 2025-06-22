@@ -35,8 +35,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
 
-X_FRAME_OPTIONS = "ALLOW-FROM https://ui.dev/"
-
 # Application definition
 
 INSTALLED_APPS = [
