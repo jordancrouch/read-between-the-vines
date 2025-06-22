@@ -17,4 +17,9 @@ urlpatterns = [
         views.CommentDeleteView.as_view(),
         name="comment_delete",
     ),
+    path(
+        "<slug:slug>/delete_progress/<int:progress_id>",
+        views.ReadingProgressDeleteView.as_view(),
+        name="reading_progress_delete",
+    ),
 ]

@@ -134,6 +134,7 @@ class BookDetail(FormMixin, generic.DetailView):
         context["progress_form"] = progress_form
         context["user_progress"] = user_progress
         context["average_progress"] = round(average_progress)
+        context["progress"] = user_progress
 
         return context
 
@@ -174,5 +175,19 @@ class CommentDeleteView(View):
             messages.success(request, "Comment deleted!")
         else:
             messages.error(request, "You can only delete your own comments!")
+
+        return HttpResponseRedirect(reverse("books:book_detail", args=[book.slug]))
+
+
+class ReadingProgressDeleteView(View):
+    def post(self, request, slug, progress_id):
+        book = get_object_or_404(Books, slug=slug)
+        reading_progress = get_object_or_404(ReadingProgress, pk=progress_id, book=book)
+
+        if reading_progress.user == request.user:
+            reading_progress.delete()
+            messages.success(request, "Reading progress deleted successfully!")
+        else:
+            messages.error(request, "You can only delete your own progress.")
 
         return HttpResponseRedirect(reverse("books:book_detail", args=[book.slug]))

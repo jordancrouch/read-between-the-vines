@@ -47,9 +47,15 @@
                                         {% csrf_token %}
                                         {{ progress_form.percentage.label_tag }}
                                         {{ progress_form.percentage }}
-                                        <button type="submit"
-                                                name="progress_submit"
-                                                class="btn btn-secondary ms-auto">Update Progress</button>
+                                        <div class="button-group d-flex gap-2 flex-wrap justify-content-center">
+                                            <button type="submit" name="progress_submit" class="btn btn-secondary">Update Progress</button>
+                                            <button type="button"
+                                                    class="btn btn-primary btn-delete-progress"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteProgressModal"
+                                                    data-progress-id="{{ user_progress.id }}"
+                                                    data-book-slug="{{ book.slug }}">Delete Progress</button>
+                                        </div>
                                     </form>
                                 </div>
                             {% else %}
@@ -170,6 +176,36 @@
     </section>
     <!-- End comments section -->
     {% include "includes/footer_cta.html" %}
+    <!-- Delete progress modal -->
+    <div class="modal fade"
+         id="deleteProgressModal"
+         tabindex="-1"
+         aria-labelledby="deleteProgressModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProgressModalLabel">Delete progress?</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            data-bs-theme="dark"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your progress?
+                    This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form id="deleteProgressForm" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Delete confirmation modal -->
     <div class="modal fade"
          id="deleteModal"
@@ -202,5 +238,6 @@
     </div>
 {% endblock %}
 {% block extras %}
+    <script src="{% static 'js/progress.js' %}"></script>
     <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

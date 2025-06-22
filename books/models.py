@@ -1,6 +1,7 @@
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 # Create your models here.
@@ -65,10 +66,11 @@ class ReadingProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey("Books", on_delete=models.CASCADE, related_name="progress")
     percentage = models.PositiveIntegerField(default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ("user", "book")
 
     def __str__(self):
-        return f"{self.user} - {self.book} ({self.percentage}%)"
+        return f"{self.user.username} - {self.book.title} ({self.percentage}%)"
