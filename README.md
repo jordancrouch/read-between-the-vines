@@ -72,27 +72,85 @@
 
 ##### Requirements
 
-###### User Interface (UI) Design
+###### User Interaction & Progress Tracking
 
--
--
--
+- Users must be able to create an account, log in, and track their individual
+  reading progress for each book.
+- Only authenticated users can update or delete their progress.
+- Progress should be displayed both individually and as a club-wide average.
+- When the average progress reached 90%, the book should automatically move
+  to the "Finished Reading" category.
 
-###### Responsiveness and Cross-Platform Support
+###### Community Engagement via Comments
 
--
--
+- Users must be able to comment on each book, edit or delete their own comments,
+  and view other' approved comments.
+- Comments require moderation/approval before appearing publicly.
+- Only authenticated users can post or manage their comments.
+- A visual indicator should show if a comment is awaiting approval.
 
-###### Performance Metrics and Insights
+###### Dynamic Book Management
 
--
--
+- The site must organise books into three categories: Currently Reading,
+  To Be Read, and Finished Reading - displayed in clear sections.
+- Books are ordered by most recently updated.
+- Admin users can manage book content through the Django admin panel.
+- A book's category can be changed manually or based on club progress.
 
 #### Structure
 
 ##### Homepage
 
+- Immediately greets the user with a themed hero background video,
+  with supporting title and text to immediately make clear the purpose
+  of the site.
+- Call to actions placed to guide the user to the books page, to sign up
+  if not logged in, or to get in touch if logged in.
+- Currently reading books listed directly below the hero to provide the
+  most relevant and up-to-date information to the user.
+- Books that are next to be read are also listed beneath to give the user
+  more insight into the future reads of the club.
+- A sign up/call-to-action section is placed above to footer to encourage
+  user interaction and provide next steps if the user reaches the end of the
+  page.
+
+##### Books
+
+- The books page includes all category sections, to allow the user to pick
+  what they're interested in reading more about.
+- The information on this page is presented with more of a focus on directing
+  the user through to the detailed book pages, or to view the books archive of
+  all books that have been completed.
+
+##### Books Archive
+
+- The books archive page contains all books that have been finished reading.
+  This serves to keep track of all books read by the club, separate from more
+  current books, including pagination so as to not have to potentially load a
+  large number of books all on one page.
+- This also provides users with an opportunity to go back and read any books
+  they may have missed, and continue to update their reading progress.
+
+##### Books Detail
+
+- The detailed books page allows users to create/add/update/delete their own
+  reading progress should they so wish, which contributes to the overall book
+  club reading progress.
+- As well as providing the main information of the book, it also gives users
+  the chance to get involved in a conversation around the book using the comments
+  section underneath the content.
+- Additional calls-to-action are placed to guide users to sign up, share the book
+  on social media or via email, or return to the main books page.
+
+##### Contact
+
+- The contact page contains a simple contact form where users are able to get in
+  touch with any thoughts or feedback, or suggest future reads for the club.
+
 ##### 404 Page
+
+- A simple 404 page has been included to help guide the user back to the homepage,
+  should they find themselves in a situation where this error is returned.
 
 #### Skeleton
 
@@ -102,6 +160,10 @@
 due to the size of this file, it is recommended to download the PDF file
 for a better viewing experience. This can be done by right-clicking the link
 above, followed by selecting 'Save Link As...'.
+
+##### Database
+
+Database details and diagrams to go here...
 
 #### Surface
 
@@ -155,11 +217,54 @@ throughout the rest of the site.
 
 ##### Existing Features
 
-###### Dynamic Page Loading
+###### Book Club Features
+
+- Book Listing
+  - Books are categorised into: Currently Reading, To Be Read, and Finished Reading
+  - The average reading progress is displayed per book
+- Book Detail View
+  - Club-wide and user-specific reading progress shown
+  - Share buttons
+  - Comments section
+    - Approval system
+    - Comment editing and deletion by comment author
+  - Conditional sidebar for:
+    - Logged-out users (sign up encouragement)
+    - Logged-in users (contact call-to-action)
+- Reading Progress Tracking
+  - Logged-in users can update their progress per-book
+  - Only one progress record per user, per book
+  - Progress automatically moves a book into "Finished Reading" if average hits 90%
+
+##### Comment System
+
+- Logged-in users can submit, edit, or delete their comments
+- Comments await admin approval before being shown publicly
+- User-specific moderation (faded styling whilst pending)
+
+##### Navigation & UX Enhancements
+
+- GSAP hover tilt effects on book covers
+- Accessible modals for confirming actions
+- Footer CTA with conditional behaviour:
+  - Signup prompt for guests
+  - Contact prompt for logged-in users
+- Custom 404 page handling
 
 ##### Future Feature Considerations
 
-###### Additional Characters
+###### Club Meeting Bookings
+
+- Include a simple booking form, so users are able to sign up for monthly
+  book club meetings
+- Users will be able to create, read, update, and delete bookings
+
+###### Book Voting
+
+- Add the ability for users to vote on the 'to be read' books, so the club
+  can collectively decide the order in which the next books should be read
+- Users should only be able to vote once for each book, and have the option
+  to remove their vote also
 
 #### Technologies Used
 
@@ -169,9 +274,11 @@ throughout the rest of the site.
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript ES6](https://en.wikipedia.org/wiki/ECMAScript)
 - [Python](https://www.python.org/)
+- Python packages to go here
 
 ##### Frameworks, Libraries & Programs Used
 
+- [Django](https://www.djangoproject.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
 - [Google Fonts](https://fonts.google.com/)
 - Google fonts was used to embed the "Grenze Gotisch" and "Lato" fonts so they could
@@ -198,7 +305,11 @@ throughout the rest of the site.
 - [Illustrator](https://www.adobe.com/uk/products/illustrator.html)
 - Illustrator was used to open and import Adobe Stock illustration assets.
 - [HTML Validator](https://www.htmlvalidator.com)
-- The HTML Validator was used to validate HTML and CSS.
+- The HTML Validator was used to validate HTML and CSS code.
+- [JS Hint](https://jshint.com/)
+- Used to validate JavaScript code.
+- [CI Python Linter](https://pep8ci.herokuapp.com/)
+- Used to validate Python code.
 - [Google PageSpeed Insights](https://pagespeed.web.dev/)
 - Google PageSpeed Insights was used to check the websites performance
   across mobile and desktop devices.
@@ -207,15 +318,13 @@ throughout the rest of the site.
 
 #### Testing
 
-Testing documentation and process can be found under [TESTING.md](https://github.com/jordancrouch/read-between-the-vines/blob/main/TESTING.md)
+Link to testing file to go here...
 
 #### Deployment
 
 ##### Heroku
 
-The project was deployed to Heroku using the following steps...
-
-1.
+The project was deployed to Heroku using the following steps
 
 ##### Forking the GitHub Repository
 
@@ -259,7 +368,7 @@ for some of the buttons and more detailed explanations of the above process.
 
 ##### Code
 
--
+- Include code references (Python docs) here
 
 ##### Content
 
