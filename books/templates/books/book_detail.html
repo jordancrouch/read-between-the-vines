@@ -15,6 +15,49 @@
                         <div class="category">{{ book.category_label }}</div>
                         <h1 class="text-center text-lg-start">{{ book.title }}</h1>
                         <p class="text-center text-lg-start">{{ book.excerpt }}</p>
+                        <div class="reading-progess mt-5 w-100">
+                            <div class="club-progress">
+                                <h6>Book club reading progress:</h6>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-success"
+                                         role="progressbar"
+                                         style="width: {{ average_progress }}%"
+                                         aria-valuenow="{{ average_progress }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100">{{ average_progress }}%</div>
+                                </div>
+                            </div>
+                            {% if user.is_authenticated and user_progress %}
+                                <div class="user-progress">
+                                    <h6>Your reading progress:</h6>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar progress-bar-striped bg-success"
+                                             role="progressbar"
+                                             style="width: {{ user_progress.percentage }}%"
+                                             aria-valuenow="{{ user_progress.percentage }}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100">{{ user_progress.percentage }}%</div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <div class="update-progress mt-4">
+                                    <h6>Update your progress:</h6>
+                                    <form method="post" class="d-flex align-items-center gap-2 flex-wrap">
+                                        {% csrf_token %}
+                                        {{ progress_form.percentage.label_tag }}
+                                        {{ progress_form.percentage }}
+                                        <button type="submit"
+                                                name="progress_submit"
+                                                class="btn btn-secondary ms-auto">Update Progress</button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <p>
+                                    <a class="link-beige" href="{% url 'account_login' %}">Log in</a> to track your reading progress.
+                                </p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
@@ -117,7 +160,9 @@
                             <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     {% else %}
-                        <p>Log in to leave a comment</p>
+                        <p>
+                            <a class="link-beige" href="{% url 'account_login' %}">Log in</a> to leave a comment
+                        </p>
                     {% endif %}
                 </div>
             </div>

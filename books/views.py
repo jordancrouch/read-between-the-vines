@@ -1,11 +1,12 @@
 from django.contrib import messages
+from django.db.models import Avg
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, reverse
+from django.shortcuts import get_object_or_404, reverse
 from django.views import View, generic
 from django.views.generic.edit import FormMixin, UpdateView
 
-from .forms import CommentForm
-from .models import Books, Comment
+from .forms import CommentForm, ReadingProgressForm
+from .models import Books, Comment, ReadingProgress
 from .utils import get_published_books
 
 
@@ -17,15 +18,22 @@ class BooksList(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["currently_reading_books"] = get_published_books(category="CR")
-        context["to_be_read_books"] = get_published_books(category="TBR")
-        context["finished_reading_books"] = get_published_books(category="FR")
+        currently_reading_books = get_published_books(category="CR")
+        for book in currently_reading_books:
+            avg = book.progress.aggregate(avg=Avg("percentage"))["avg"] or 0
+            book.avg_progress = round(avg)
+
+        to_be_read_books = get_published_books(category="TBR")
+        finished_reading_books = get_published_books(category="FR")
+
+        context["currently_reading_books"] = currently_reading_books
+        context["to_be_read_books"] = to_be_read_books
+        context["finished_reading_books"] = finished_reading_books
 
         return context
 
 
-class BooksArciveList(generic.ListView):
-    # queryset = Books.objects.filter(status=1).order_by("-created_on")
+class BooksArchiveList(generic.ListView):
     queryset = get_published_books(category="FR", limit=None)
     template_name = "books/archive.html"
     context_object_name = "books_archive"
@@ -55,31 +63,77 @@ class BookDetail(FormMixin, generic.DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = self.get_form()
 
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.book = self.object
-            comment.save()
-            messages.add_message(
-                request, messages.SUCCESS, "Comment submitted and awaiting approval"
-            )
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+        if "comment_submit" in request.POST:
+
+            comment_form = self.get_form()
+
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.book = self.object
+                comment.save()
+                messages.success(request, "Comment submitted and awaiting approval.")
+                return self.form_valid(comment_form)
+            else:
+                messages.error(request, "There was an error submitting your comment.")
+                return self.form_invalid(comment_form)
+
+        elif "progress_submit" in request.POST:
+            if not request.user.is_authenticated:
+                messages.error(request, "You must be logged in to track progress.")
+                return self.get(request, *args, **kwargs)
+
+            instance = ReadingProgress.objects.filter(
+                user=request.user, book=self.object
+            ).first()
+            progress_form = ReadingProgressForm(request.POST, instance=instance)
+            if progress_form.is_valid():
+                progress = progress_form.save(commit=False)
+                progress.user = request.user
+                progress.book = self.object
+                progress.save()
+
+                avg_progress = (
+                    self.object.progress.aggregate(avg=Avg("percentage"))["avg"] or 0
+                )
+                if (
+                    avg_progress >= 80
+                    and self.object.category == Books.ReadingStatus.CURRENTLY_READING
+                ):
+                    self.object.category = Books.ReadingStatus.FINISHED_READING
+                    self.object.save()
+
+                messages.success(request, "Reading progress updated!")
+            else:
+                messages.error(request, "There was an error updating your progress.")
+            return self.get(request, *args, **kwargs)
+
+        return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         book = self.get_object()
 
-        comments = book.comments.all().order_by("-created_on")
-        comment_count = book.comments.filter(approved=True).count()
-        comment_form = CommentForm
+        context["comments"] = book.comments.all().order_by("-created_on")
+        context["comment_count"] = book.comments.filter(approved=True).count()
+        context["comment_form"] = self.get_form()
 
-        context["comments"] = comments
-        context["comment_count"] = comment_count
-        context["comment_form"] = comment_form
+        user_progress = None
+        if self.request.user.is_authenticated:
+            user_progress = ReadingProgress.objects.filter(
+                user=self.request.user, book=book
+            ).first()
+            progress_form = ReadingProgressForm(instance=user_progress)
+        else:
+            progress_form = None
+
+        raw_average = book.progress.aggregate(avg=Avg("percentage"))["avg"] or 0
+        average_progress = round(raw_average, 2)
+
+        context["progress_form"] = progress_form
+        context["user_progress"] = user_progress
+        context["average_progress"] = round(average_progress)
 
         return context
 

@@ -58,3 +58,17 @@ class Comment(models.Model):
     body: models.TextField = models.TextField()
     approved: models.BooleanField = models.BooleanField(default=False)
     created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
+
+
+# Reading progress model
+class ReadingProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey("Books", on_delete=models.CASCADE, related_name="progress")
+    percentage = models.PositiveIntegerField(default=0)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("user", "book")
+
+    def __str__(self):
+        return f"{self.user} - {self.book} ({self.percentage}%)"
