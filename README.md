@@ -1,6 +1,6 @@
 # Read Between the Vines
 
-![Read Between the Vines Mockups](https://jordancrouch.github.io/read-between-the-vines/assets/mockups/read-between-the-vines-mockups.jpg)
+![Read Between the Vines Mockups](assets/mockups/read-between-the-vines-mockups.jpg)
 
 ## A book club site with a fantasy genre focus that encourages group reading
 
@@ -98,7 +98,7 @@
 
 ##### Wireframes
 
-[View](https://jordancrouch.github.io/read-between-the-vines/assets/wireframes/read-between-the-vines-wireframes.pdf):
+[View](assets/wireframes/read-between-the-vines-wireframes.pdf):
 due to the size of this file, it is recommended to download the PDF file
 for a better viewing experience. This can be done by right-clicking the link
 above, followed by selecting 'Save Link As...'.
@@ -143,7 +143,7 @@ uploading it to the 'Extract Theme' section, with the following colours being us
 
 #### High-fidelity Designs
 
-[View](https://jordancrouch.github.io/read-between-the-vines/assets/wireframes/read-between-the-vines-designs.pdf):
+[View](assets/wireframes/read-between-the-vines-designs.pdf):
 due to the size of this file, it is recommended to download the PDF file
 for a better viewing experience. This can be done by right-clicking the link
 above, followed by selecting 'Save Link As...'.
@@ -186,8 +186,8 @@ throughout the rest of the site.
 - ui.dev/amiresponsive was used to create the website device mock-up image
   used at the top of this file.
 - [Figma](https://www.figma.com/)
-- Figma was used to create the [wireframes](https://jordancrouch.github.io/read-between-the-vines/assets/wireframes/read-between-the-vines-wireframes.pdf)
-  and [designs](https://jordancrouch.github.io/read-between-the-vines/assets/wireframes/read-between-the-vines-designs.pdf)
+- Figma was used to create the [wireframes](assets/wireframes/read-between-the-vines-wireframes.pdf)
+  and [designs](assets/wireframes/read-between-the-vines-designs.pdf)
   for the project, as well as the logo and favicon. The wireframes were created
   using the [BRIX Templates Website Wireframes UI Kit](https://www.figma.com/community/file/1200835310657744518)
 - [favicon.io](https://favicon.io)
