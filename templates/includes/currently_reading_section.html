@@ -18,6 +18,19 @@
                             <p class="text-center text-lg-start">{{ book.excerpt }}</p>
                             <a href="{% url 'books:book_detail' book.slug %}"
                                class="btn btn-primary mt-3">Go to book</a>
+                            <div class="reading-progess mt-5 w-100">
+                                <div class="club-progress mt-5">
+                                    <h6>Book club reading progress:</h6>
+                                    <div class="progress mb-3">
+                                        <div class="progress-bar bg-success"
+                                             role="progressbar"
+                                             style="width: {{ book.avg_progress }}%"
+                                             aria-valuenow="{{ book.avg_progress }}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100">{{ book.avg_progress }}%</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 ps-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-center">

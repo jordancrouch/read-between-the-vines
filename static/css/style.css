@@ -204,6 +204,17 @@ h6,
   transition: color 0.2s ease-in-out;
 }
 
+/* Progress */
+.progress-bar.bg-success {
+  background-color: var(--green) !important;
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+  line-height: 1rem;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* Util classes */
 .border-radius {
   border-radius: var(--border-radius);
