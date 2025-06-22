@@ -92,7 +92,12 @@
                                     <p class="approval">This comment is awaiting approval.</p>
                                 {% endif %}
                                 {% if user.is_authenticated and comment.author == user %}
-                                    <button class="btn btn-edit btn-primary" comment_id="{{ comment.id }}">Edit</button>
+                                    <div class="button-group d-flex gap-2 flex-wrap">
+                                        <button class="btn btn-edit btn-outline" comment_id="{{ comment.id }}">Edit</button>
+                                        <button class="btn btn-delete btn-primary"
+                                                comment_id="{{ comment.id }}"
+                                                slug="{{ book.slug }}">Delete</button>
+                                    </div>
                                 {% endif %}
                             </div>
                         {% empty %}
@@ -120,6 +125,36 @@
     </section>
     <!-- End comments section -->
     {% include "includes/footer_cta.html" %}
+    <!-- Delete confirmation modal -->
+    <div class="modal fade"
+         id="deleteModal"
+         tabindex="-1"
+         aria-labelledby="deleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            data-bs-theme="dark"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your comment?
+                    This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form id="deleteForm" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block extras %}
     <script src="{% static 'js/comments.js' %}"></script>
