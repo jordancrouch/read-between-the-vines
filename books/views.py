@@ -2,10 +2,12 @@ from django.contrib import messages
 from django.db.models import Avg
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, reverse
+from django.urls import reverse_lazy
 from django.views import View, generic
+from django.views.generic import FormView
 from django.views.generic.edit import FormMixin, UpdateView
 
-from .forms import CommentForm, ReadingProgressForm
+from .forms import CommentForm, ContactForm, ReadingProgressForm
 from .models import Books, Comment, ReadingProgress
 from .utils import get_published_books
 
@@ -37,7 +39,7 @@ class BooksArchiveList(generic.ListView):
     queryset = get_published_books(category="FR", limit=None)
     template_name = "books/archive.html"
     context_object_name = "books_archive"
-    paginate_by = 3
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -191,3 +193,17 @@ class ReadingProgressDeleteView(View):
             messages.error(request, "You can only delete your own progress.")
 
         return HttpResponseRedirect(reverse("books:book_detail", args=[book.slug]))
+
+
+class ContactView(FormView):
+    template_name = "contact/contact.html"
+    form_class = ContactForm
+    success_url = reverse_lazy("contact")
+
+    def form_valid(self, form):
+        messages.success(self.request, "Your message has been sent!")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error with your submission.")
+        return super().form_valid(form)

@@ -8,8 +8,10 @@
         <div class="container px-0">
             {% if request.path != home_url and forloop.counter0 == 0 %}
                 <div class="section-title text-center mb-5">
-                    <h2>Currently reading section title</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+                    <h2>In the midst of the journey</h2>
+                    <p>
+                        These books are our current companions on the journey of reading. Whether we're lost in a thrilling mystery or captivated by a poignant narrative, these stories are unfolding one page at a time. Join us in the adventure!
+                    </p>
                 </div>
             {% endif %}
             {% if forloop.counter0|divisibleby:"2" %}

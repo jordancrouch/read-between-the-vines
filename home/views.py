@@ -1,4 +1,5 @@
 from django.db.models import Avg
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
 from books.models import Books
@@ -21,5 +22,6 @@ class Homepage(TemplateView):
 
         context["currently_reading_books"] = currently_reading_books
         context["to_be_read_books"] = to_be_read_books
+        context["contact_url"] = reverse_lazy("contact")
 
         return context
