@@ -66,16 +66,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
-                    {% if "placeholder" in book.featured_image.url %}
-                        <img src="{% static "images/book-placeholder.png" %}"
-                             alt="Book Placeholder Image"
-                             class="book">
-                    {% else %}
-                        <img src="{{ book.featured_image.url }}"
-                             alt="{{ post.title }}"
-                             class="book">
-                    {% endif %}
+                <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0">
+                    <div class="book-cover d-flex justify-content-stretch">
+                        {% if "placeholder" in book.featured_image.url %}
+                            <img src="{% static "images/book-placeholder.png" %}"
+                                 alt="Book Placeholder Image"
+                                 class="book">
+                        {% else %}
+                            <img src="{{ book.featured_image.url }}"
+                                 alt="{{ post.title }}"
+                                 class="book">
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

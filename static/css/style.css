@@ -483,6 +483,10 @@ h6,
   margin: 0 auto;
 }
 
+.book-cover {
+  perspective: 1000px;
+}
+
 .book {
   width: 100%;
   max-width: 461px;
@@ -490,6 +494,7 @@ h6,
   border-radius: 6px;
   box-shadow: 0px 0px 24px 6px rgba(242, 234, 211, 0.25);
   display: block;
+  transform-style: preserve-3d;
 }
 
 .book.book-light {
