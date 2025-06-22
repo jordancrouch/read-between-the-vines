@@ -6,6 +6,12 @@
              class="px-3 py-5"
              aria-label="Book currently being read section">
         <div class="container px-0">
+            {% if request.path != home_url and forloop.counter0 == 0 %}
+                <div class="section-title text-center mb-5">
+                    <h2>Currently reading section title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
+                </div>
+            {% endif %}
             {% if forloop.counter0|divisibleby:"2" %}
                 <div class="row g-4">
                 {% else %}
@@ -13,8 +19,12 @@
                     {% endif %}
                     <div class="col-12 col-lg-6 pe-lg-4 pt-lg-3 mt-lg-0 d-flex justify-content-stretch">
                         <div class="book-content-container d-flex flex-column justify-content-lg-center align-items-lg-start">
-                            {% if request.path != home_url %}<div class="category">{{ book.category_label }}</div>{% endif %}
-                            <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
+                            {% if request.path != home_url %}
+                                <div class="category">{{ book.category_label }}</div>
+                                <h3 class="text-center text-lg-start">{{ book.title }}</h3>
+                            {% else %}
+                                <h2 class="text-center text-lg-start">Currently reading: {{ book.title }}</h2>
+                            {% endif %}
                             <p class="text-center text-lg-start">{{ book.excerpt }}</p>
                             <a href="{% url 'books:book_detail' book.slug %}"
                                class="btn btn-primary mt-3">Go to book</a>

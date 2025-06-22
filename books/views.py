@@ -37,7 +37,7 @@ class BooksArchiveList(generic.ListView):
     queryset = get_published_books(category="FR", limit=None)
     template_name = "books/archive.html"
     context_object_name = "books_archive"
-    paginate_by = 6
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
