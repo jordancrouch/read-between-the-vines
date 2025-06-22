@@ -32,7 +32,9 @@
     </section>
     <!-- End books hero -->
     <!-- Books archive section -->
-    <section class="px-3 py-5" aria-label="Books archive section">
+    <section id="books-archive-section"
+             class="px-3 py-5"
+             aria-label="Books archive section">
         <div class="container px-0 text-center">
             <div class="row g-4 mt-4">
                 {% for book in books_archive %}
@@ -78,6 +80,9 @@
                     </ul>
                 </nav>
             {% endif %}
+        </div>
+        <div class="books-archive-bg-icon">
+            <img src="{% static 'images/currently-reading-filigree.svg' %}" alt="">
         </div>
     </section>
     {% include "includes/footer_cta.html" %}

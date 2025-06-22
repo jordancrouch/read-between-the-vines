@@ -386,18 +386,28 @@ h6,
   margin: 0 auto;
 }
 
-/* Currently reading section */
-#currently-reading {
+/* Shared template sections */
+#currently-reading + #currently-reading {
+  padding-top: 0 !important;
+}
+
+#currently-reading,
+#finished-reading,
+#books-archive-section {
   position: relative;
   overflow: hidden;
 }
 
-#currently-reading .container {
+#currently-reading .container,
+#finished-reading .container,
+#books-archive-section .container {
   position: relative;
   z-index: 1;
 }
 
-#currently-reading .currently-reading-bg-icon {
+#currently-reading .currently-reading-bg-icon,
+#finished-reading .finished-reading-bg-icon,
+#books-archive-section .books-archive-bg-icon {
   position: absolute;
   right: -360px;
   bottom: -282px;
@@ -406,15 +416,18 @@ h6,
   z-index: 0;
 }
 
-#currently-reading .currently-reading-bg-icon img {
+#finished-reading .finished-reading-bg-icon,
+#books-archive-section .books-archive-bg-icon {
+  bottom: -266px;
+}
+
+#currently-reading .currently-reading-bg-icon img,
+#finished-reading .finished-reading-bg-icon img,
+#books-archive-section .books-archive-bg-icon img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-#currently-reading + #currently-reading {
-  padding-top: 0 !important;
 }
 
 /* To be read section */

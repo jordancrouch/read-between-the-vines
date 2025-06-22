@@ -112,9 +112,15 @@
                 </div>
                 <div class="col-12 col-lg-4 pt-lg-3 mt-lg-0">
                     <div class="sidebar bg-beige p-4 p-lg-5 d-flex flex-column">
-                        <h3>Want to leave a comment?</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.</p>
-                        <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign up</a>
+                        {% if user.is_authenticated %}
+                            <h3>We'd love to hear from you!</h3>
+                            <p>Got something to say? Drop your comment below and share your thoughts about this book with the community.</p>
+                            <a href="#comment-section" class="btn btn-secondary">Leave a comment</a>
+                        {% else %}
+                            <h3>Join the conversation</h3>
+                            <p>Sign up today to leave your thoughts and join the discussion about this book. We'd love to hear your opinions!</p>
+                            <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign up</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
