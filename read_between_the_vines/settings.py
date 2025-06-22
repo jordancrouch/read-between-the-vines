@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
-from django.conf.global_settings import LOGIN_REDIRECT_URL
+from django.conf.global_settings import LOGIN_REDIRECT_URL, X_FRAME_OPTIONS
 
 if os.path.isfile("env.py"):
     import env
@@ -35,6 +35,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com"]
 
+X_FRAME_OPTIONS = "ALLOW-FROM https://ui.dev/"
 
 # Application definition
 
