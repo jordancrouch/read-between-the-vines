@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, reverse
-from django.views import generic
+from django.views import View, generic
 from django.views.generic.edit import FormMixin, UpdateView
 
 from .forms import CommentForm
@@ -96,7 +96,7 @@ class CommentEditView(UpdateView):
 
     def form_valid(self, form):
         comment = form.save(commit=False)
-        comment.post = self.post
+        comment.book = self.book
         comment.approved = False
         comment.save()
         messages.success(self.request, "Comment updated!")
@@ -108,3 +108,17 @@ class CommentEditView(UpdateView):
 
     def get_queryset(self):
         return Comment.objects.filter(author=self.request.user)
+
+
+class CommentDeleteView(View):
+    def post(self, request, slug, comment_id):
+        book = get_object_or_404(Books, slug=slug, status=1)
+        comment = get_object_or_404(Comment, pk=comment_id)
+
+        if comment.author == request.user:
+            comment.delete()
+            messages.success(request, "Comment deleted!")
+        else:
+            messages.error(request, "You can only delete your own comments!")
+
+        return HttpResponseRedirect(reverse("books:book_detail", args=[book.slug]))
