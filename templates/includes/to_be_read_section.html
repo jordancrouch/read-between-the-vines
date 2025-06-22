@@ -5,10 +5,9 @@
          aria-label="Books to be read section">
     <div class="container px-0 text-center">
         <div class="section-title">
-            <h2 class="text-center">To be read/reading list title</h2>
+            <h2 class="text-center">Stories Waiting to Be Told</h2>
             <p class="text-center">
-                Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-                phasellus mollis sit aliquam sit nullam.
+                Our handpicked list of future reads - books full of promise, mystery, and magic. Browse what's next on our shelf and get ready to turn the first page.
             </p>
             {% if request.resolver_match.url_name != 'books' %}
                 <a href="{% url 'books:books' %}" class="btn btn-secondary mt-3">View all books</a>

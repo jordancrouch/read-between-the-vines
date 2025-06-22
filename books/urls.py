@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path("", views.BooksList.as_view(), name="books"),
     path("archive/", views.BooksArchiveList.as_view(), name="books_archive"),
+    path("contact/", views.ContactView.as_view(), name="contact"),
     path("<slug:slug>/", views.BookDetail.as_view(), name="book_detail"),
     path(
         "<slug:slug>/edit_comment/<int:comment_id>",

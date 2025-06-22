@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block head_title %}
+    {% trans "Contact" %}
+{% endblock head_title %}
+{% load static %}
+{% block content %}
+    <!-- Contact content -->
+    <!-- Contact hero -->
+    <section id="books-hero" class="hero" aria-label="Hero section">
+        <div class="hero-container mx-3">
+            <div class="container-xxl hero-container bg-green">
+                <div class="hero-bg-img-container">
+                    <img srcset="{% static 'images/contact-hero-mobile.jpg' %} 390w,
+                                 {% static 'images/contact-hero-desktop.jpg' %} 1220w"
+                         sizes="(max-width: 600px) 390px,
+                                1220px"
+                         src="{% static 'images/contact-hero-desktop.jpg' %}"
+                         alt="A large dark academia themed library with bookshelves on each wall, lined with foliage and a desk and seating in the middle of the room">
+                </div>
+                <div class="hero-content-container d-flex align-items-center">
+                    <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="text-center mb-4">Get in touch with us</h1>
+                        <p class="text-center mb-5">
+                            Have a question, feedback, or just want to share your thoughts? We'd love to hear from you! Fill out the form below, and we'll get back to you as soon as possible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End contact hero -->
+    <section class="px-3 py-5" aria-label="Contact form section">
+        <div class="container px-0">
+            <div class="content">
+                <div class="section-title">
+                    <h2>Send us a message</h2>
+                </div>
+                <div class="row mt-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

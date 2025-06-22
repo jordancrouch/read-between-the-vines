@@ -7,16 +7,25 @@
 {% load static %}
 {% block content %}
     <!-- Books archive content -->
-    <!-- Books hero -->
-    <section id="books-hero" class="hero mx-3" aria-label="Hero section">
-        <div class="container-xxl hero-container bg-green">
-            <div class="hero-content-container d-flex align-items-center">
-                <div class="hero-content d-flex flex-column justify-content-center align-items-center">
-                    <h1 class="text-center mb-4">Books archive title to go here...</h1>
-                    <p class="text-center mb-5">
-                        Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-                        phasellus mollis sit aliquam sit nullam.
-                    </p>
+    <!-- Books archive hero -->
+    <section id="books-archive-hero" class="hero" aria-label="Hero section">
+        <div class="hero-container mx-3">
+            <div class="container-xxl hero-container bg-green">
+                <div class="hero-bg-img-container">
+                    <img srcset="{% static 'images/books-archive-hero-mobile.jpg' %} 390w,
+                                 {% static 'images/books-archive-hero-desktop.jpg' %} 1220w"
+                         sizes="(max-width: 600px) 390px,
+                                1220px"
+                         src="{% static 'images/books-archive-hero-desktop.jpg' %}"
+                         alt="A wall with three archways surrounded bookcases filled with old books, surrounded by draping foliage and fairy lights">
+                </div>
+                <div class="hero-content-container d-flex align-items-center">
+                    <div class="hero-content d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="text-center mb-4">A Collection of Timeless Tales</h1>
+                        <p class="text-center mb-5">
+                            Welcome to the archive of completed books. These stories have journeyed from cover to cover, each leaving its unique mark. Browse through our collection of finished reads and revisit the ones that left an impression.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,6 +60,24 @@
                 {% empty %}
                 {% endfor %}
             </div>
+            {% if is_paginated %}
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li>
+                                <a href="?page={{ page_obj.previous_page_number }}"
+                                   class="link-beige read-more"><i class="fa-solid fa-arrow-left"></i> PREV</a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a href="?page={{ page_obj.next_page_number }}"
+                                   class="link-beige read-more">NEXT <i class="fa-solid fa-arrow-right"></i></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
         </div>
     </section>
     {% include "includes/footer_cta.html" %}
