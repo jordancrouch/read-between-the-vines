@@ -1,6 +1,8 @@
 {% load static %}
 <!-- Finished reading books section -->
-<section class="px-3 py-5" aria-label="Finished reading books section">
+<section id="finished-reading"
+         class="px-3 py-5"
+         aria-label="Finished reading books section">
     <div class="container px-0 text-center">
         <div class="section-title">
             <h2 class="text-center">The stories we've closed</h2>
@@ -33,9 +35,11 @@
                     <a href="{% url 'books:book_detail' book.slug %}"
                        class="read-more link-beige">Read more</a>
                 </div>
-            {% empty %}
             {% endfor %}
         </div>
     </div>
+    <div class="finished-reading-bg-icon">
+        <img src="{% static 'images/currently-reading-filigree.svg' %}" alt="">
+    </div>
 </section>
-<!-- End to be read books section -->
+<!-- End finished reading books section -->
