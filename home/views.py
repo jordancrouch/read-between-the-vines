@@ -6,8 +6,14 @@ from books.models import Books
 from books.utils import get_published_books
 
 
-# Create your views here.
 class Homepage(TemplateView):
+    """
+    View for displaying the homepage.
+
+    Attributes:
+        template_name (str): the template used to render the homepage.
+    """
+
     template_name = "home/index.html"
 
     def get_context_data(self, **kwargs):

@@ -4,8 +4,24 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 
 
-# Books model.
 class Books(models.Model):
+    """
+    Books model.
+
+    This model contains the information for each book entry.
+
+    Attributes:
+        title (CharField): the title of the book (unique).
+        slug (SlugField): the path used for the book page in URL-friendly format (unique).
+        excerpt (TextField): the book excerpt displayed beneath the title on the book listings and single pages (can be left blank).
+        content (TextField): the full content for the book displayed for each single book page.
+        featured_image (CloudinaryField): the image used as the book featured image, generally the book cover (default: placeholder).
+        created_on (DateTimeField): auto-generated timestamp of when the book was created.
+        updated_on (DateTimeField): auto-generated timestamp of when the book was last updated/edited.
+        status (IntegerField): the published status of the book (draft/published, default: draft).
+        category (CharField): the reading status category of the book.
+    """
+
     class Meta:
         verbose_name = "Book"
         verbose_name_plural = "Books"
@@ -44,10 +60,22 @@ class Books(models.Model):
     )
 
 
-# Comment model
 class Comment(models.Model):
+    """
+    Comment model.
+
+    This model contains the information for each comment entry.
+
+    Attributes:
+        book (ForeignKey): the book entry that this comment is assigned to.
+        author (ForeignKey): the author (user) who submitted the comment.
+        body (TextField): the actual comment text submitted.
+        approved (BolleanField): the approval status of the comment (false/true, default: false).
+        created_on (DateTimeField): auto-generated timestamp of when the comment was created.
+    """
+
     class Meta:
-        ordering = ["created_on"]
+        ordering = ["-created_on"]
 
     def __str__(self):
         status = "Approved" if self.approved else "Awaiting approval"
@@ -60,8 +88,20 @@ class Comment(models.Model):
     created_on: models.DateTimeField = models.DateTimeField(auto_now_add=True)
 
 
-# Reading progress model
 class ReadingProgress(models.Model):
+    """
+    Reading Progress model.
+
+    This model contains the information relating to the reading progress for each book.
+
+    Attributes:
+        user (ForeignKey): the user who submitted the reading progress.
+        book (ForeignKey): the book entry that the reading progress is assigned to.
+        percentage (PositiveIntegerField): the reading progress value (default: 0).
+        created_on (DateTimeField): auto-generated timestamp of when the reading progress was created.
+        updated_on (DateTimeField): auto-generated timestamp of when the reading progress was last edited/updated.
+    """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey("Books", on_delete=models.CASCADE, related_name="progress")
     percentage = models.PositiveIntegerField(default=0)

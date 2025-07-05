@@ -12,8 +12,20 @@ from .models import Books, Comment, ReadingProgress
 from .utils import get_published_books
 
 
-# Create your views here.
 class BooksList(generic.ListView):
+    """
+    View for displaying a list of books grouped by reading category.
+
+    Published books are grouped into three categories:
+    - Currently Reading (CR): average reading progress is also calculated
+    - To Be Read (TBR)
+    - Finished Reading (FR)
+
+    Attributes:
+        queryset (QuerySet): initial published books.
+        template_name (str): the template used to render the book list(s).
+    """
+
     queryset = get_published_books()
     template_name = "books/index.html"
 
@@ -36,6 +48,16 @@ class BooksList(generic.ListView):
 
 
 class BooksArchiveList(generic.ListView):
+    """
+    View for displaying all books that are 'finished reading'.
+
+    Attributes:
+        queryset (QuerySet): all published books in the Finished Reading category.
+        template_name (str): the template used to render the book archive list.
+        context_object_name (str): the variable name used in the template context.
+        paginate_by (int): the number of books to display per-page.
+    """
+
     queryset = get_published_books(category="FR", limit=None)
     template_name = "books/archive.html"
     context_object_name = "books_archive"
@@ -48,6 +70,22 @@ class BooksArchiveList(generic.ListView):
 
 
 class BookDetail(FormMixin, generic.DetailView):
+    """
+    Displays the detail page for an individual book.
+
+    This view handles GET and POST requests.
+    GET shows the book details, existing comments, and the user's reading progress.
+    POST handles the following two forms:
+    - CommentForm: for submitting a new comment.
+    - ReadingProgressForm: for submitting/updating reading progress.
+
+    Attributes:
+        model (Model): the Books model used for retrieving the book instance.
+        template_name (str): the template used to render the book detail page.
+        context_object_name (str): the variable name used in the template context.
+        form_class (ModelForm): the form class used for submitting comments.
+    """
+
     model = Books
     template_name = "books/book_detail.html"
     context_object_name = "book"
@@ -142,6 +180,19 @@ class BookDetail(FormMixin, generic.DetailView):
 
 
 class CommentEditView(UpdateView):
+    """
+    Displays an individual comment for editing.
+
+    Requests are restricted to POST only and re-approves the comment on submission.
+    Only the comment author can update their comment.
+
+    Attributes:
+        model (Model): the Comment model used for retrieving/updating the comment.
+        form_class (ModelForm): the form class used for submitting comments.
+        pk_url_kwarg (str): the URL keyword argument used to look up the comment's primary key.
+        http_method_names (list): restrict requests to POST only.
+    """
+
     model = Comment
     form_class = CommentForm
     pk_url_kwarg = "comment_id"
@@ -168,6 +219,16 @@ class CommentEditView(UpdateView):
 
 
 class CommentDeleteView(View):
+    """
+    Deletion of an individual comment by the comment's author.
+
+    POST requests only. Comment author's are allowed to delete their own comment(s).
+    After a comment is deleted, the user is redirected back to the book's detail page.
+
+    Attributes:
+        post (method): handles the deletion of a comment based on the user.
+    """
+
     def post(self, request, slug, comment_id):
         book = get_object_or_404(Books, slug=slug, status=1)
         comment = get_object_or_404(Comment, pk=comment_id)
@@ -182,6 +243,17 @@ class CommentDeleteView(View):
 
 
 class ReadingProgressDeleteView(View):
+    """
+    Deletion of a user's reading progress.
+
+    POST requests only. Reading progress author can delete their own progress.
+    After progress has been deleted, the user the redirected back to the book's detail page.
+
+    Attributes:
+        post (method): handles the deletion of reading progress based on the user.
+
+    """
+
     def post(self, request, slug, progress_id):
         book = get_object_or_404(Books, slug=slug)
         reading_progress = get_object_or_404(ReadingProgress, pk=progress_id, book=book)
@@ -196,6 +268,16 @@ class ReadingProgressDeleteView(View):
 
 
 class ContactView(FormView):
+    """
+    Displays the contact page and contact form.
+
+    Attributes:
+        template_name (str): the template used to render the contact page.
+        form_class (ModelForm): the form class used for the contact form.
+        success_url (str): the URL to redirect users to after a successful form submission.
+
+    """
+
     template_name = "contact/contact.html"
     form_class = ContactForm
     success_url = reverse_lazy("contact")

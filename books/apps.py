@@ -2,5 +2,9 @@ from django.apps import AppConfig
 
 
 class BooksConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'books'
+    """
+    Provides primary key type for the books app.
+    """
+
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "books"
