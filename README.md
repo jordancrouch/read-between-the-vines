@@ -163,7 +163,7 @@ above, followed by selecting 'Save Link As...'.
 
 ##### Database
 
-Database details and diagrams to go here...
+<!-- TODO: Create and add entity relationship diagrams from excel -->
 
 #### Surface
 
@@ -198,7 +198,7 @@ uploading it to the 'Extract Theme' section, with the following colours being us
   and are AI generated.
 - The image used in the footer call-to-action section was also
   downloaded from [Adobe Stock](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978450&url=https://stock.adobe.com/uk/&ved=2ahUKEwi0rJ_A4YWOAxVMTkEAHXq-ARAQFnoECD4QAQ&usg=AOvVaw0yn-QK1OZQiC9yFD0Q-ctq)
-- All book covers were sources from their respective pages
+- All book covers were sourced from their respective pages
   on [Amazon](https://www.amazon.co.uk/)
 - Decorative background elements (filigree) were downloaded from [Adobe Stock](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://stock.adobe.com/uk/&ved=2ahUKEwi0rJ_A4YWOAxVMTkEAHXq-ARAQFnoECD4QAQ&usg=AOvVaw0yn-QK1OZQiC9yFD0Q-ctq)
 - Decorative elements for the logo were also downloaded from [Adobe Stock](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://stock.adobe.com/uk/&ved=2ahUKEwi0rJ_A4YWOAxVMTkEAHXq-ARAQFnoECD4QAQ&usg=AOvVaw0yn-QK1OZQiC9yFD0Q-ctq)
@@ -274,10 +274,10 @@ throughout the rest of the site.
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript ES6](https://en.wikipedia.org/wiki/ECMAScript)
 - [Python](https://www.python.org/)
-- Python packages to go here
 
 ##### Frameworks, Libraries & Programs Used
 
+- <!-- TODO: Add Python packages used -->
 - [Django](https://www.djangoproject.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
 - [Google Fonts](https://fonts.google.com/)
@@ -318,7 +318,7 @@ throughout the rest of the site.
 
 #### Testing
 
-Link to testing file to go here...
+<!-- TODO: Testing -->
 
 #### Deployment
 
@@ -357,8 +357,10 @@ repository by using the following steps...
 
 7. Press Enter. Your local clone will be created.
 
+   <!-- TODO: Add clone output code below -->
+
    ```sh
-   TODO: Paste clone output
+
    ```
 
 [Retrieve pictures](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop)
@@ -368,7 +370,7 @@ for some of the buttons and more detailed explanations of the above process.
 
 ##### Code
 
-- Include code references (Python docs) here
+- <!-- TODO: Include code references used for Python/Django -->
 
 ##### Content
 
