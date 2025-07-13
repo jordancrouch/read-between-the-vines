@@ -43,7 +43,7 @@
                            href="{% url 'books:book_detail' book.slug %}"
                            title="{{ book.title }}">
                             {% if "placeholder" in book.featured_image.url %}
-                                <img src="{% static "images/book-placeholder.png" %}"
+                                <img src="{% static "images/book-placeholder.webp" %}"
                                      alt="Book Placeholder Image"
                                      class="book mb-3">
                             {% else %}

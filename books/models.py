@@ -70,7 +70,7 @@ class Comment(models.Model):
         book (ForeignKey): the book entry that this comment is assigned to.
         author (ForeignKey): the author (user) who submitted the comment.
         body (TextField): the actual comment text submitted.
-        approved (BolleanField): the approval status of the comment (false/true, default: false).
+        approved (BooleanField): the approval status of the comment (false/true, default: false).
         created_on (DateTimeField): auto-generated timestamp of when the comment was created.
     """
 

@@ -166,7 +166,7 @@ class BookDetail(FormMixin, generic.DetailView):
             ).first()
             progress_form = ReadingProgressForm(instance=user_progress)
         else:
-            progress_form = None
+            progress_form = ReadingProgressForm()
 
         raw_average = book.progress.aggregate(avg=Avg("percentage"))["avg"] or 0
         average_progress = round(raw_average, 2)

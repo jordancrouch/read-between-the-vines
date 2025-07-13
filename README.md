@@ -163,7 +163,9 @@ above, followed by selecting 'Save Link As...'.
 
 ##### Database
 
-<!-- TODO: Create and add entity relationship diagrams from excel -->
+This project uses PostgreSQL for the database, and the database structure can be
+viewed with the entity relationship diagram below:
+![Entity Relationship Diagram](assets/entity-relationship-diagram.png)
 
 #### Surface
 
