@@ -279,9 +279,9 @@ throughout the rest of the site.
 
 ##### Frameworks, Libraries & Programs Used
 
-- <!-- TODO: Add Python packages used -->
-- [Django](https://www.djangoproject.com/)
-- [Bootstrap 5](https://getbootstrap.com/)
+- [Python](https://www.python.org/): v3.12.3
+- [Django](https://www.djangoproject.com/): v4.2.22
+- [Bootstrap 5](https://getbootstrap.com/): v5.3
 - [Google Fonts](https://fonts.google.com/)
 - Google fonts was used to embed the "Grenze Gotisch" and "Lato" fonts so they could
   be used throughout the site.
@@ -317,6 +317,69 @@ throughout the rest of the site.
   across mobile and desktop devices.
 - [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 - WAVE was used to test the websites accessibility features.
+
+###### Python Packages
+
+- [asgiref](https://pypi.org/project/asgiref/3.8.1):
+  v3.8.1. Async-synchrronisation in Django.
+- [bleach](https://pypi.org/project/bleach/6.2.0):
+  v6.2.0. Sanitising HTML & auto-linking text.
+- [certifi](https://pypi.org/project/certifi/2025.6.15):
+  v2025.6.15. Secure HTTP transport.
+- [cffi](https://pypi.org/project/cffi/1.17.1):
+  v1.17.1. Security & parsing utilities.
+- [charset-normalizer](https://pypi.org/project/charset-normalizer/3.4.2):
+  v3.4.2. Character encoding detection and normalisation.
+- [cloudinary](https://pypi.org/project/cloudinary/1.36.0):
+  v1.36.0. Media storage and management.
+- [crispy-bootstrap5](https://pypi.org/project/crispy-bootstrap5/0.7):
+  v0.7. Integrates Django forms with Bootstrap 5.
+- [cryptography](https://pypi.org/project/cryptography/45.0.4):
+  v45.0.4. Security & parsing utilities.
+- [defusedxml](https://pypi.org/project/defusedxml/0.7.1):
+  v0.7.1. Security & parsing utilities.
+- [dj-database-url](https://pypi.org/project/dj-database-url/0.5.0):
+  v0.5.0. Database config.
+- [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/0.0.6):
+  v0.0.6. Media storage.
+- [Django](https://pypi.org/project/Django/4.2.22):
+  v4.2.22. Core web framework.
+- [django-allauth](https://pypi.org/project/django-allauth/0.57.2):
+  v0.57.2. User authentication handling.
+- [django-crispy-forms](https://pypi.org/project/django-crispy-forms/2.4):
+  v2.4. Simplified form handling.
+- [django-summernote](https://pypi.org/project/django-summernote/0.8.20.0):
+  v0.8.20.0. Rich text/HTML editing in the admin area.
+- [gunicorn](https://pypi.org/project/gunicorn/20.1.0):
+  v20.1.0. WSGI HTTP server for deployment.
+- [idna](https://pypi.org/project/idna/3.10):
+  v3.10. Secure HTTP transport.
+- [oauthlib](https://pypi.org/project/oauthlib/3.3.1):
+  v3.3.1. OAuth protocols.
+- [psycopg2](https://pypi.org/project/psycopg2/2.9.10):
+  v2.9.10. PostgreSQL database adapter.
+- [pycparser](https://pypi.org/project/pycparser/2.22):
+  v2.22. Security & parsing utilities.
+- [PyJWT](https://pypi.org/project/PyJWT/2.10.1):
+  v2.10.1. JSON Web Tokens for authentication and session management.
+- [python3-openid](https://pypi.org/project/python3-openid/3.2.0):
+  v3.2.0. Library for OpenID authentication support.
+- [requests](https://pypi.org/project/requests/2.32.4):
+  v2.32.4. HTTP web requests.
+- [requests-oauthlib](https://pypi.org/project/requests-oauthlib/2.0.0):
+  v2.0.0. HTTP authentication flow.
+- [setuptools](https://pypi.org/project/setuptools/80.9.0):
+  v80.9.0. Packaging and compatibility support.
+- [six](https://pypi.org/project/six/1.17.0):
+  v1.17.0. Packaging and compatibility support.
+- [sqlparse](https://pypi.org/project/sqlparse/0.5.3):
+  v0.5.3. Database configuration.
+- [urllib3](https://pypi.org/project/urllib3/1.26.20):
+  v1.26.20. Secure HTTP transport.
+- [webencodings](https://pypi.org/project/webencodings/0.5.1):
+  v0.5.1. Encoding/decoding support for HTML5 parsers.
+- [whitenoise](https://pypi.org/project/whitenoise/5.3.0):
+  v5.3.0. Serves static files directly from Django in production.
 
 #### Testing
 
@@ -372,7 +435,28 @@ for some of the buttons and more detailed explanations of the above process.
 
 ##### Code
 
-- <!-- TODO: Include code references used for Python/Django -->
+Documentation sources are listed below for additional functionality implemented:
+
+- [Django Template Inheritance](https://docs.djangoproject.com/en/5.2/topics/templates/#template-inheritance):
+  used for templating modules to be used in multiple places.
+- [Django reverse](https://docs.djangoproject.com/en/5.2/ref/urlresolvers/#reverse)
+  and [{% url %}](https://docs.djangoproject.com/en/5.2/ref/templates/builtins/#url):
+  used to dynamically generate URLs and prevent NoReverseMatch.
+- [Django include](https://docs.djangoproject.com/en/5.2/ref/templates/builtins/#include):
+  {% include %} to make use of reusable HTML sections.
+- [Django 404 Page Handling](https://docs.djangoproject.com/en/5.2/topics/http/views/#the-404-page-not-found-view):
+  custom 404.html template used by setting DEBUG=FALSE.
+- [Conditional Footer CTA](https://docs.djangoproject.com/en/5.2/ref/templates/api/#variables):
+  {% if user.is_authenticated %} used in template.
+- [Book Progress Auto-categorisation](https://docs.djangoproject.com/en/5.2/topics/db/models/#model-methods):
+  logic written in Django to update book category based on collective
+  percentage read.
+- [Django Contact Form](https://docs.djangoproject.com/en/5.2/ref/class-based-views/generic-editing/#formview):
+  reusable contact form and class based view.
+- [GSAP.to()](<https://gsap.com/docs/v3/GSAP/gsap.to()/>):
+  used to create book cover tilt/rotation based on mouse position.
+- [Mouse Title Calculations](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect):
+  based on getBoundingClientRect() and delta between cursor and element center.
 
 ##### Content
 

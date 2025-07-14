@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const bookCovers = document.querySelectorAll(".book-cover");
 
-  const titleEffect = (e) => {
+  const tiltEffect = (e) => {
     const book = e.currentTarget;
     const rect = book.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   bookCovers.forEach((book) => {
-    book.addEventListener("mousemove", titleEffect);
+    book.addEventListener("mousemove", tiltEffect);
 
     book.addEventListener("mouseleave", () => {
       gsap.to(book.querySelector("img"), {
