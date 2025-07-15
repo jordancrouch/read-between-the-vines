@@ -18,9 +18,14 @@ The main README documentation can be found under [README.md](https://github.com/
 
 1. As a first-time visitor, I want to be able to easily determine and understand
    the main purpose of the website.
-   i.
-   ii.
-   iii.
+   i. When landing on the homepage of the site, users are immediately met with a
+   large video hero banner that contains books in.
+   ii. Also when landing on the homepage, the hero banner contains large heading
+   one text that hints at reading-based content, and is supported with additional
+   text for more context, along with two prominent buttons acting as calls-to-action.
+   iii. When landing on any other page, the header at the top of the page contains
+   the logo, navigation menu text, and button text that help to provide context
+   to the user that this is a book club site.
 2. As a first-time visitor, I want to be able to see what is currently being
    read by the book club.
    i.

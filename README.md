@@ -383,7 +383,7 @@ throughout the rest of the site.
 
 #### Testing
 
-<!-- TODO: Testing -->
+Testing documentation and process can be found in [TESTING.md](https://github.com/jordancrouch/read-between-the-vines/blob/main/TESTING.md)
 
 #### Deployment
 
