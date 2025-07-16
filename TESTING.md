@@ -28,19 +28,27 @@ The main README documentation can be found under [README.md](https://github.com/
    to the user that this is a book club site.
 2. As a first-time visitor, I want to be able to see what is currently being
    read by the book club.
-   i.
-   ii.
-   iii.
+   i. The homepage hero contains a button link to 'view all books', where the
+   books that are currently being read are displayed as the first books shown
+   beneath the hero.
+   ii. The section under the homepage banner displays books that are currently
+   being read, so that they are easy to find and visible high up the page.
+   iii. A link to the 'books' page is also present in the navigation menu,
+   so that the books that are currently being ready can be accessed from any
+   page.
 3. As a first-time visitor, I want to be able to create an account and sign
    up to the site/club.
-   i.
-   ii.
-   iii.
+   i. The homepage hero contains a button link as a call-to-action for non-logged
+   in users to 'sign up now'.
+   ii. The navigation menu also contains a link to 'register' that can be accessed
+   from anywhere on the site.
+   iii. The foote call-to-action also conditionally displays a button link to
+   'sign up now' for users that are not logged in.
 4. As a first-time visitor, I want to be able to view the reading progress
    of the books.
-   i.
-   ii.
-   iii.
+   i. The reading progress of the books that are currently being read are displayed
+   where they are listed throughout the website (on the homepage and books page).
+   ii. The reading progress can also be seen on all book detail pages.
 
 #### Returning Visitor Goals
 
